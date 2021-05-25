@@ -1,0 +1,69 @@
+﻿#homeBody {
+    font-family: 'Kiwi Maru', serif;
+    background-color: var(--color-primary);
+    width: 100%;
+    font-size: 60%;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+#homeContent{
+
+}
+
+#homeContent a {
+
+}
+
+#homeContent h1 {
+    color: var(--color-line-in-white)
+}
+
+.total-connections {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-in-primary);
+}
+
+.buttons-container {
+    grid-area: button;
+    justify-content: flex-start; /*relacionado ao display*/
+    margin: 0;
+}
+
+.buttons-container a {
+    width: 30rem;
+    height: 10.4rem;
+    border-radius: 0.8rem;
+    margin-right: 1.6rem;
+    font: 500 2.4rem 'Kiwi Maru';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background 0.2s;
+    color: var(--color-button-text);
+}
+
+.buttons-container a.cadastre {
+    background: var(--color-primary-lighter);
+}
+
+.buttons-container a.cadastre:hover {
+    background: var(--color-primary-light);
+}
+
+.buttons-container a.sobre {
+    background: var(--color-secondary);
+    margin-right: 0;
+}
+
+    .buttons-container a.sobre:hover {
+        background: #ecfffe;
+    }

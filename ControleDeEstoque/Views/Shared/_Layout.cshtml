@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/home.css" />
     <link rel="stylesheet" href="~/css/Sobre.css" />
     <link rel="stylesheet" href="~/css/formatado.css" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js%22%3E"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -29,27 +31,46 @@
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> <!--login e sem login-->
+                            <div class="dropdown">
+                                <button class="dropbtn">Listagem</button>
+                                <div class="dropdown-content">
+                                    <a href="#">Produtos</a>
+                                    <a href="#">Clientes</a>
+                                    <a href="#">Fornecedores</a>
+                                    <a href="#">Histórico de Transações</a>
+                                    <a href="#">Usuários</a>
+                                </div>
+                            </div>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
+                            <div class="dropdown">
+                                <button class="dropbtn">Movimentação de Estoque</button>
+                                <div class="dropdown-content">
+                                    <a href="#">Registrar Venda</a>
+                                    <a href="#">Registrar Compra</a>
+                                </div>
+                            </div>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NovoCurriculo">Compra</a>
+                            <div class="dropdown">
+                                <button class="dropbtn">Cadastrar</button>
+                                <div class="dropdown-content">
+                                    <a href="#">Produto</a>
+                                    <a href="#">Cliente</a>
+                                    <a href="#">Fornecedor</a>
+                                    <a href="#">Usuário</a>
+                                </div>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NovoCurriculo">Venda</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="List">Cadastro</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="List">Listagem</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="List">Login</a>
-                        </li>
+
+                        <button class="dropbtn">Sobre</button>
+
+                        <button class="dropbtn">Perfil</button>
+
                     </ul>
                 </div>
             </div>

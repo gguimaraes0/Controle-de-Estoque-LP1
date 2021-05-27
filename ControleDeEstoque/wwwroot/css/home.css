@@ -117,13 +117,21 @@ body{
     display: block;
 }
 
+
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #000000;
-}
+}   
 
+.nav-button:hover .dropbtn {
+    background-color: #000000;
+}
 .container {
     padding: 2rem 0rem;
+}
+
+div.container {
+    padding: 0px 0px;
 }
 
 @media (min-width: 576px) {

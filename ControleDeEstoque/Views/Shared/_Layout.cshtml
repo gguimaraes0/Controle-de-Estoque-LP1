@@ -59,9 +59,9 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Cadastrar</button>
                                 <div class="dropdown-content">
-                                    <a href="#">Produto</a>
+                                    <a asp-controller="Produto" asp-action="CadastroProduto">Produto</a>
                                     <a asp-controller="Cliente" asp-action="CadastroCliente">Cliente</a>
-                                    <a href="#">Fornecedor</a>
+                                    <a asp-controller="Fornecedor" asp-action="CadastroFornecedor">Fornecedor</a>
                                 </div>
                             </div>
                         </li>
@@ -99,7 +99,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">
-                                        <div class="signup-section">Não é um menbro ainda?<a href="#a" class="text-info">Registrar</a>.</div>
+                                        <div class="signup-section">
+                                            Não é um menbro ainda?
+                                            <a asp-controller="Usuario" asp-action="CadastroUsuario" class="text-info">Registrar</a>.
+                                        </div>
                                     </div>
                                 </div>
                             </div>

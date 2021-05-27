@@ -60,9 +60,8 @@
                                 <button class="dropbtn">Cadastrar</button>
                                 <div class="dropdown-content">
                                     <a href="#">Produto</a>
-                                    <a href="#">Cliente</a>
+                                    <a asp-controller="Cliente" asp-action="CadastroCliente">Cliente</a>
                                     <a href="#">Fornecedor</a>
-                                    <a href="#">Usuário</a>
                                 </div>
                             </div>
                         </li>
@@ -117,6 +116,7 @@
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

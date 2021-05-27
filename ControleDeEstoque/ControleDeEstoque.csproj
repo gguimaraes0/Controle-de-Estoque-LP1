@@ -10,12 +10,4 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Fornecedor\" />
-    <Folder Include="Views\Cliente\" />
-    <Folder Include="Views\CompraVenda\" />
-    <Folder Include="Views\Usuario\" />
-    <Folder Include="Views\Produto\" />
-  </ItemGroup>
-
 </Project>

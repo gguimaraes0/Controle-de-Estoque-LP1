@@ -1,0 +1,123 @@
+﻿@model ClienteViewModel
+
+
+<div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Nome</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="Nome" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Email</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="Email" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>CPF</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="CPF" placeholder="999.999.999-99" onkeydown="javascript: fMasc(this, mCPF);" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>CNPJ</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Telefone</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Número</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="Numero" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>CEP</label>
+        </div>
+        <div class="col-3">
+            <input type="text" id="cep" onchange="buscaCEP()" asp-for="CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Logradouro</label>
+        </div>
+        <div class="col-3">
+            <input type="text" id="logradouro" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Complemento</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="Complemento" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Bairro</label>
+        </div>
+        <div class="col-3">
+            <input type="text" id="bairro" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Cidade</label>
+        </div>
+        <div class="col-3">
+            <input type="text" id="cidade" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Estado</label>
+        </div>
+        <div class="col-3">
+            <input type="text" id="estado" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Data de Nascimento</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="DataNascimento" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
+        </div>
+    </div>
+
+</div>

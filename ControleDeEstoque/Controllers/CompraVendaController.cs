@@ -18,10 +18,21 @@ namespace ControleDeEstoque.Controllers
             _logger = logger;
         }
 
-        public IActionResult CadastroCompraVenda()
+        public IActionResult CadastroCompra()
         {
             CompraVendaViewModel compraVenda = new CompraVendaViewModel();
-            return View("CadastroCompraVenda", compraVenda);
+            return View("CadastroCompra", compraVenda);
+        }
+
+        public IActionResult CadastroVenda()
+        {
+            CompraVendaViewModel compraVenda = new CompraVendaViewModel();
+            return View("CadastroVenda", compraVenda);
+        }
+
+        public IActionResult ListagemCompraVenda()
+        {
+            return View("ListagemCompraVenda");
         }
     }
 }

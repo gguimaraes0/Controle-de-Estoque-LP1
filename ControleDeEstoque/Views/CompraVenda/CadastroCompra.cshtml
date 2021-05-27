@@ -1,0 +1,54 @@
+﻿@model CompraVendaViewModel
+
+<div>
+    @Model.Tipo = "compra";
+    <div class="row">
+        <label>Registro de Compra</label>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Codigo do Fornecedor</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="CodigoFornecedor" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Codigo do Cliente</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="CodigoCliente" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Codigo do usuário</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="CodigoUsuario" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Data da Compra</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="Data" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Lista\quantidade dos produtos ... como fazer??</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="ListCodigoProduto" />
+        </div>
+    </div>
+
+</div>

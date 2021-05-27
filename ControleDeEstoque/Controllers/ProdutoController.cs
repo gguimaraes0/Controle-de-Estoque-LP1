@@ -23,5 +23,10 @@ namespace ControleDeEstoque.Controllers
             ProdutoViewModel produto = new ProdutoViewModel();
             return View("CadastroProduto", produto);
         }
+
+        public IActionResult ListagemProduto()
+        {
+            return View("ListagemProduto");
+        }
     }
 }

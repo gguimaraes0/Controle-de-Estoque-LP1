@@ -23,5 +23,10 @@ namespace ControleDeEstoque.Controllers
             FornecedoresViewModel fornecedor = new FornecedoresViewModel();
             return View("CadastroFornecedor", fornecedor);
         }
+
+        public IActionResult ListagemFornecedor()
+        {
+            return View("ListagemFornecedor");
+        }
     }
 }

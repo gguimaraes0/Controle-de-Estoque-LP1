@@ -23,5 +23,10 @@ namespace ControleDeEstoque.Controllers
             ClienteViewModel cliente = new ClienteViewModel();
             return View("CadastroCliente", cliente);
         }
+
+        public IActionResult ListagemCliente()
+        {
+            return View("ListagemCliente");
+        }
     }
 }

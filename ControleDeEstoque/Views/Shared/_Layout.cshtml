@@ -36,11 +36,11 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Listagem</button>
                                 <div class="dropdown-content">
-                                    <a href="#">Produtos</a>
-                                    <a href="#">Clientes</a>
-                                    <a href="#">Fornecedores</a>
-                                    <a href="#">Histórico de Transações</a>
-                                    <a href="#">Usuários</a>
+                                    <a asp-controller="Produto" asp-action="ListagemProduto">Produtos</a>
+                                    <a asp-controller="Cliente" asp-action="ListagemCliente">Clientes</a>
+                                    <a asp-controller="Fornecedor" asp-action="ListagemFornecedor">Fornecedores</a>
+                                    <a asp-controller="CompraVenda" asp-action="ListagemCompraVenda">Histórico de Transações</a>
+                                    <a asp-controller="Usuario" asp-action="ListagemUsuario">Usuários</a>
                                 </div>
                             </div>
                         </li>
@@ -49,8 +49,8 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Movimentação de Estoque</button>
                                 <div class="dropdown-content">
-                                    <a href="#">Registrar Venda</a>
-                                    <a href="#">Registrar Compra</a>
+                                    <a asp-controller="CompraVenda" asp-action="CadastroVenda">Registrar Venda</a>
+                                    <a asp-controller="CompraVenda" asp-action="CadastroCompra">Registrar Compra</a>
                                 </div>
                             </div>
                         </li>

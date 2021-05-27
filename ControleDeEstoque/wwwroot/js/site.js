@@ -9,6 +9,21 @@
 //    })
 //});
 
+function checkPJ() {
+    debugger
+
+    if (document.getElementById('divCNPJ').style.display == 'block') {
+        document.getElementById('divCNPJ').style.display = 'none';
+        document.getElementById('CNPJ').value = '';
+        document.getElementById('divCPF').style.display = 'block';
+    }
+    else {
+        document.getElementById('divCPF').style.display = 'none';
+        document.getElementById('CPF').value = '';
+        document.getElementById('divCNPJ').style.display = 'block';
+    }
+}
+
 function buscaCEP() {
     debugger;
     var cep = document.getElementById("cep").value;

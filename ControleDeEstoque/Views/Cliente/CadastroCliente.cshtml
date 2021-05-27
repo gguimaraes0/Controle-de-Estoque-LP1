@@ -4,6 +4,15 @@
 <div>
 
     <div class="row">
+        <label>Cadastro de Usuário</label>
+    </div>
+
+    <div>
+        <label for="pj">Pessoa Jurídica</label>
+        <input type="checkbox" id="pj" name="pj" value="Pessoa Jurídica" onchange="checkPJ()">
+    </div>
+
+    <div class="row">
         <div class="col-2">
             <label>Nome</label>
         </div>
@@ -21,7 +30,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="divCPF">
         <div class="col-2">
             <label>CPF</label>
         </div>
@@ -30,7 +39,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="divCNPJ" style="display:none">
         <div class="col-2">
             <label>CNPJ</label>
         </div>

@@ -23,5 +23,10 @@ namespace ControleDeEstoque.Controllers
             UsuarioViewModel usuario = new UsuarioViewModel();
             return View("CadastroUsuario", usuario);
         }
+
+        public IActionResult ListagemUsuario()
+        {
+            return View("ListagemUsuario");
+        }
     }
 }

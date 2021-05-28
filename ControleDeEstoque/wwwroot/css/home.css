@@ -68,6 +68,18 @@ a {
         background: #ecfffe;
     }*/
 
+.titulolayout {
+    font-family: Stencil;
+    color: #fe6703;
+    font-size:55px;
+    margin-right:35px;
+}
+
+a.titulolayout:visited {
+    color: #fe6703;
+
+}
+
 body{
     background-image:url('../img/background.jpeg');
     background-size:100%;

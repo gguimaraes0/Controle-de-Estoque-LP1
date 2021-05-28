@@ -1,0 +1,23 @@
+﻿
+
+h1.letrahome {
+    color: white;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
+    font-family: Impact;
+    font-size: 37px;
+}
+h1.letrahomecaps {
+    color: black;
+    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-color: #fe6703;
+    font-family: Impact;
+    font-size: 45px;
+    text-align:center;
+    margin-bottom: 105px;
+    margin-top:50px;
+}
+.imagembox{
+    float:left;
+}
+

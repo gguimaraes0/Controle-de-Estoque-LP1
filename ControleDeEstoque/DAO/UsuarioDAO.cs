@@ -36,7 +36,7 @@ namespace ControleDeEstoque.DAO
             p.CodigoFornecedor = Convert.ToInt32(registro["CodigoFornecedorProduto"]);
             //     p.Imagem = registro["FotoProduto"].ToString();
 
-            return p;
+            return null;
         }
 
         protected override void SetTabela()

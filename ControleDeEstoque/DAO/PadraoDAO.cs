@@ -23,7 +23,7 @@ namespace ControleDeEstoque.DAO
 
         public virtual void Insert(T model)
         {
-            HelperDAO.ExecutaProc("sp_Insert_" + Tabela, CriaParametros(model));
+            HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model));
         }
         public virtual void Update(T model)
         {

@@ -1,4 +1,5 @@
-﻿using ControleDeEstoque.Models;
+﻿using ControleDeEstoque.Helpers;
+using ControleDeEstoque.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,37 +13,51 @@ namespace ControleDeEstoque.DAO
     {
         protected override SqlParameter[] CriaParametros(UsuarioViewModel usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("Usu", usuario.Nome);
-            parametros[1] = new SqlParameter("TipoProduto", usuario.Email);
-            parametros[2] = new SqlParameter("TamanhoProduto", usuario.CEP);
-            parametros[3] = new SqlParameter("DescricaoProduto", usuario.Numero);
-            parametros[4] = new SqlParameter("QuantidadeDisponivelProduto", usuario.Telefone);
-            parametros[5] = new SqlParameter("CodFornecedor", usuario.Senha);
-            parametros[5] = new SqlParameter("CodFornecedor", usuario.Complemento);
-      
-            //  parametros[6] = new SqlParameter("FotoProduto", produto.Imagem);
-
+            SqlParameter[] parametros = new SqlParameter[7];
+            parametros[0] = new SqlParameter("EmailUsuario", usuario.Email);
+            parametros[1] = new SqlParameter("SenhaUsuario", usuario.Senha);
+            parametros[2] = new SqlParameter("NomeUsuario", usuario.Nome);
+            parametros[3] = new SqlParameter("NumeroUsuario", usuario.Numero);
+            parametros[4] = new SqlParameter("ComplementoUsuario", usuario.Complemento);
+            parametros[5] = new SqlParameter("TelefoneUsuario", usuario.Telefone);
+            parametros[6] = new SqlParameter("CEPUsuario", usuario.CEP);
             return parametros;
         }
-        protected override UsuarioViewModel MontaModel(DataRow registro)
+         protected override UsuarioViewModel MontaModel(DataRow registro)
         {
-            ProdutoViewModel p = new ProdutoViewModel();
-            p.Tipo = Convert.ToInt32(registro["TipoProduto"]);
-            p.Cor = registro["CorProduto"].ToString();
-            p.Tamanho = registro["TamanhoProduto"].ToString();
-            p.Descricao = registro["DescricaoProduto"].ToString();
-            p.Quantidade = registro["QuantidadeProduto"].ToString();
-            p.CodigoFornecedor = Convert.ToInt32(registro["CodigoFornecedorProduto"]);
-            //     p.Imagem = registro["FotoProduto"].ToString();
+            UsuarioViewModel U = new UsuarioViewModel();
+            U.Email = registro["EmailUsuario"].ToString();
+            U.Senha = registro["SenhaUsuario"].ToString();
+            U.Nome = registro["NomeUsuario"].ToString();
+            U.Numero = registro["NumeroUsuario"].ToString();
+            U.Complemento = registro["ComplementoUsuario"].ToString();
+            U.Telefone = registro["TelefoneUsuario"].ToString();
+            U.CEP = registro["CEPUsuario"].ToString();
 
-            return null;
+            return U;
         }
-
         protected override void SetTabela()
         {
-            Tabela = "Produtos";
-            NomeSpListagem = "spListagemProdutos";
+            Tabela = "Usuarios";
+            NomeSpListagem = "spListagemUsuarios";
+        }
+
+        public bool LoginJaExiste(string Login)
+        {
+            string sql = $"select * from tb_Usuarios where EmailUsuario = '{Login}'";
+            DataTable tabela = ConexaoDB.ExecutaSelect(sql);
+            return tabela.Rows.Count > 0;
+        }
+        public  UsuarioViewModel RetornaUsuarioLogado(UsuarioViewModel usuario)
+        {
+            string sql = $"select * from Usuarios WHERE EmailUsuario ='{usuario.Email}' AND SenhaUsuario= '{usuario.Senha}'";
+            DataTable tabela = ConexaoDB.ExecutaSelect(sql);
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+            {
+                return MontaModel(tabela.Rows[0]);
+            }
         }
     }
 }

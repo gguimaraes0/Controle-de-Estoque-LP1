@@ -20,5 +20,18 @@ namespace ControleDeEstoque.Helpers
             conexao.Open();
             return conexao;
         }
+         public static DataTable ExecutaSelect(string sql)
+        {
+            using (SqlConnection conexao = ConexaoDB.GetConexao())
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(sql, conexao))
+                {
+                    DataTable tabelaTemp = new DataTable();
+                    adapter.Fill(tabelaTemp);
+                    conexao.Close();
+                    return tabelaTemp;
+                }
+            }
+        }
     }
 }

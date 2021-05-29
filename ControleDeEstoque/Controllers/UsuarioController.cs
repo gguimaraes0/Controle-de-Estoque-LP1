@@ -4,12 +4,13 @@ using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : DefaultController
     {
-        private readonly UsuarioDAO UsuarioDAO = new UsuarioDAO();
+
         private readonly ILogger<UsuarioController> _logger;
 
         public UsuarioController(ILogger<UsuarioController> logger)
@@ -45,40 +46,6 @@ namespace ControleDeEstoque.Controllers
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
-        }
-        public IActionResult LogarUsuario(MainViewModel main)
-        {
-            try
-            {
-                var usuarioValido = UsuarioDAO.ValidaLogin(main.usuario);
-                if (usuarioValido != null)
-                {
-                    HttpContext.Session.SetString("Logado", "true");
-                    ViewBag.Logado = true;
-                    // Microsoft.AspNetCore.Http.HttpContext.Session.SetString("Logado", "true");
-                    return View("../Home/Index");
-                }
-                else
-                {
-                    ViewBag.Logado = false;
-                    ViewBag.Erro = "Usuário ou senha inválidos!";
-                    return View("../Home/Index");
-                    //Mostrar mensagem de erro
-                }
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Erro = "Ocorreu um erro: " + ex.Message;
-                return RedirectToAction("HomeView", "Home");
-            }
-            //Logar(usuario);
-            //return null;
-        }
-        public IActionResult LogOff()
-        {
-            HttpContext.Session.Clear();
-            ViewBag.Logado = false;
-            return View("../Home/Index");
-        }
+        }    
     }
 }

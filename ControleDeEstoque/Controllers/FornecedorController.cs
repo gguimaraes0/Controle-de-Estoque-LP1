@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class FornecedorController : Controller
+    public class FornecedorController : DefaultController
     {
         private readonly ILogger<FornecedorController> _logger;
 
@@ -20,8 +20,8 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult CadastroFornecedor()
         {
-            FornecedoresViewModel fornecedor = new FornecedoresViewModel();
-            return View("CadastroFornecedor", fornecedor);
+            MainViewModel mainViewModel = new MainViewModel();
+            return View("CadastroFornecedor", mainViewModel);
         }
 
         public IActionResult ListagemFornecedor()

@@ -1,4 +1,4 @@
-﻿@model ProdutoViewModel
+﻿@model MainViewModel
 @{
     ViewData["Title"] = "Cadastro de Produtos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
             <label>Tipo</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Tipo" />
+            <input type="text" asp-for="produto.Tipo" />
         </div>
     </div>
 
@@ -24,7 +24,7 @@
             <label>Cor</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Cor" />
+            <input type="text" asp-for="produto.Cor" />
         </div>
     </div>
 
@@ -33,7 +33,7 @@
             <label>Tamanho</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Tamanho" />
+            <input type="text" asp-for="produto.Tamanho" />
         </div>
     </div>
 
@@ -42,7 +42,7 @@
             <label>Descrição</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Descricao" />
+            <input type="text" asp-for="produto.Descricao" />
         </div>
     </div>
 
@@ -51,7 +51,7 @@
             <label>Quantidade</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Quantidade" />
+            <input type="text" asp-for="produto.Quantidade" />
         </div>
     </div>
 
@@ -60,7 +60,7 @@
             <label>Imagem</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Imagem" />
+            <input type="text" asp-for="produto.Imagem" />
         </div>
     </div>
 
@@ -69,7 +69,7 @@
             <label>Código do Fornecedor</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="CodigoFornecedor" />
+            <input type="text" asp-for="produto.CodigoFornecedor" />
         </div>
     </div>
 

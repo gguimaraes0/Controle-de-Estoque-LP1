@@ -1,7 +1,7 @@
-﻿@model CompraVendaViewModel
+﻿@model MainViewModel
 
 <div>
-    @Model.Tipo = "compra";
+    @Model.compraVenda.Tipo = "compra";
     <div class="row">
         <label>Registro de Compra</label>
     </div>
@@ -11,7 +11,7 @@
             <label>Codigo do Fornecedor</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="CodigoFornecedor" />
+            <input type="text" asp-for="compraVenda.CodigoFornecedor" />
         </div>
     </div>
 
@@ -20,7 +20,7 @@
             <label>Codigo do Cliente</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="CodigoCliente" />
+            <input type="text" asp-for="compraVenda.CodigoCliente" />
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             <label>Codigo do usuário</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="CodigoUsuario" />
+            <input type="text" asp-for="compraVenda.CodigoUsuario" />
         </div>
     </div>
 
@@ -38,7 +38,7 @@
             <label>Data da Compra</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Data" />
+            <input type="text" asp-for="compraVenda.Data" />
         </div>
     </div>
 
@@ -47,7 +47,7 @@
             <label>Lista\quantidade dos produtos ... como fazer??</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="ListCodigoProduto" />
+            <input type="text" asp-for="compraVenda.ListCodigoProduto" />
         </div>
     </div>
 

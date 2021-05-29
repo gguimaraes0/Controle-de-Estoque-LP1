@@ -1,4 +1,4 @@
-﻿@model UsuarioViewModel
+﻿@model MainViewModel
 
 
 <form asp-controller="Usuario" asp-action="CadastrarUsuario">
@@ -12,7 +12,7 @@
             <label>Nome</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Nome" />
+            <input type="text" asp-for="usuario.Nome" />
         </div>
     </div>
 
@@ -21,7 +21,7 @@
             <label>Email</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Email" />
+            <input type="text" asp-for="usuario.Email" />
         </div>
     </div>
 
@@ -30,7 +30,7 @@
             <label>Senha</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Senha" />
+            <input type="text" asp-for="usuario.Senha" />
         </div>
     </div>
 
@@ -39,7 +39,7 @@
             <label>Telefone</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
+            <input type="text" asp-for="usuario.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
         </div>
     </div>
 
@@ -48,7 +48,7 @@
             <label>Número</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Numero" />
+            <input type="text" asp-for="usuario.Numero" />
         </div>
     </div>
 
@@ -57,7 +57,7 @@
             <label>CEP</label>
         </div>
         <div class="col-3">
-            <input type="text" id="cep" onchange="buscaCEP()" asp-for="CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+            <input type="text" id="cep" onchange="buscaCEP()" asp-for="usuario.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
         </div>
     </div>
 
@@ -75,7 +75,7 @@
             <label>Complemento</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Complemento" />
+            <input type="text" asp-for="usuario.Complemento" />
         </div>
     </div>
 

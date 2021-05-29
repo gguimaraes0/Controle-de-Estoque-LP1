@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class ProdutoController : Controller
+    public class ProdutoController : DefaultController
     {
         private readonly ILogger<ProdutoController> _logger;
 
@@ -29,8 +29,8 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult CadastroProduto()
         {
-            ProdutoViewModel produto = new ProdutoViewModel();
-            return View("CadastroProduto", produto);
+            MainViewModel mainViewModel = new MainViewModel();
+            return View("CadastroProduto", mainViewModel);
         }
 
         public IActionResult ListagemProduto()

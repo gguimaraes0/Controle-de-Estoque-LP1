@@ -1,4 +1,4 @@
-﻿@model ClienteViewModel
+﻿@model MainViewModel
 
 
 <div>
@@ -17,7 +17,7 @@
             <label>Nome</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Nome" />
+            <input type="text" asp-for="cliente.Nome" />
         </div>
     </div>
 
@@ -26,7 +26,7 @@
             <label>Email</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Email" />
+            <input type="text" asp-for="cliente.Email" />
         </div>
     </div>
 
@@ -36,7 +36,7 @@
                 <label>CPF</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="CPF" placeholder="999.999.999-99" onkeydown="javascript: fMasc(this, mCPF);" />
+                <input type="text" asp-for="cliente.CPF" placeholder="999.999.999-99" onkeydown="javascript: fMasc(this, mCPF);" />
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                 <label>CNPJ</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
+                <input type="text" asp-for="cliente.CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
             <label>Telefone</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
+            <input type="text" asp-for="cliente.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
         </div>
     </div>
 
@@ -67,7 +67,7 @@
             <label>Número</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Numero" />
+            <input type="text" asp-for="cliente.Numero" />
         </div>
     </div>
 
@@ -76,7 +76,7 @@
             <label>CEP</label>
         </div>
         <div class="col-3">
-            <input type="text" id="cep" onchange="buscaCEP()" asp-for="CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+            <input type="text" id="cep" onchange="buscaCEP()" asp-for="cliente.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
         </div>
     </div>
 
@@ -94,7 +94,7 @@
             <label>Complemento</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="Complemento" />
+            <input type="text" asp-for="cliente.Complemento" />
         </div>
     </div>
 
@@ -130,7 +130,7 @@
             <label>Data de Nascimento</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="DataNascimento" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
+            <input type="text" asp-for="cliente.DataNascimento" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
         </div>
     </div>
 

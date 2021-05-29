@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class CompraVendaController : Controller
+    public class CompraVendaController : DefaultController
     {
         private readonly ILogger<CompraVendaController> _logger;
 
@@ -20,14 +20,14 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult CadastroCompra()
         {
-            CompraVendaViewModel compraVenda = new CompraVendaViewModel();
-            return View("CadastroCompra", compraVenda);
+            MainViewModel mainViewModel = new MainViewModel();
+            return View("CadastroCompra", mainViewModel);
         }
 
         public IActionResult CadastroVenda()
         {
-            CompraVendaViewModel compraVenda = new CompraVendaViewModel();
-            return View("CadastroVenda", compraVenda);
+            MainViewModel mainViewModel = new MainViewModel();
+            return View("CadastroVenda", mainViewModel);
         }
 
         public IActionResult ListagemCompraVenda()

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class ClienteController : Controller
+    public class ClienteController : DefaultController
     {
         private readonly ILogger<ClienteController> _logger;
 
@@ -20,8 +20,10 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult CadastroCliente()
         {
-            ClienteViewModel cliente = new ClienteViewModel();
-            return View("CadastroCliente", cliente);
+            MainViewModel mainViewModel = new MainViewModel();
+
+            // ClienteViewModel cliente = new ClienteViewModel();
+            return View("CadastroCliente", mainViewModel);
         }
 
         public IActionResult ListagemCliente()

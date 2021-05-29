@@ -1,15 +1,9 @@
 ﻿using ControleDeEstoque.DAO;
-using ControleDeEstoque.Models;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Controllers
 {
@@ -37,7 +31,7 @@ namespace ControleDeEstoque.Controllers
         public IActionResult CadastrarUsuario(UsuarioViewModel usuario)
         {
             try
-           {
+            {
                 // ValidaDados(curriculo, Operacao);
 
                 UsuarioDAO dao = new UsuarioDAO();
@@ -52,21 +46,24 @@ namespace ControleDeEstoque.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-
-        public IActionResult LogarUsuario(UsuarioViewModel usuario)
+        public IActionResult LogarUsuario(MainViewModel main)
         {
             try
             {
-                var usuarioValido = UsuarioDAO.ValidaLogin(usuario);
+                var usuarioValido = UsuarioDAO.ValidaLogin(main.usuario);
                 if (usuarioValido != null)
                 {
                     HttpContext.Session.SetString("Logado", "true");
-                    return RedirectToAction("index", "Home");
+                    ViewBag.Logado = true;
+                    // Microsoft.AspNetCore.Http.HttpContext.Session.SetString("Logado", "true");
+                    return View("../Home/Index");
                 }
                 else
                 {
+                    ViewBag.Logado = false;
                     ViewBag.Erro = "Usuário ou senha inválidos!";
-                    return View("Index");
+                    return View("../Home/Index");
+                    //Mostrar mensagem de erro
                 }
             }
             catch (Exception ex)
@@ -80,7 +77,8 @@ namespace ControleDeEstoque.Controllers
         public IActionResult LogOff()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            ViewBag.Logado = false;
+            return View("../Home/Index");
         }
     }
 }

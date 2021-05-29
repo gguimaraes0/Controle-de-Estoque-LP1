@@ -1,12 +1,11 @@
-﻿
-@model UsuarioViewModel
+﻿@model MainViewModel
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ESTOQUE ASIIMOV</title>
+    <title>ESTOQUE ASIIMOV</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/home.css" />
@@ -19,106 +18,130 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="titulolayout" asp-area="" asp-controller="Home" asp-action="Index">ESTOQUE ASIIMOV</a>
-                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>*@
+                    </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <button class="dropbtn">Listagem</button>
-                                <div class="dropdown-content">
-                                    <a asp-controller="Produto" asp-action="ListagemProduto">Produtos</a>
-                                    <a asp-controller="Cliente" asp-action="ListagemCliente">Clientes</a>
-                                    <a asp-controller="Fornecedor" asp-action="ListagemFornecedor">Fornecedores</a>
-                                    <a asp-controller="CompraVenda" asp-action="ListagemCompraVenda">Histórico de Transações</a>
-                                    <a asp-controller="Usuario" asp-action="ListagemUsuario">Usuários</a>
+                        @if (ViewBag.Logado == true)
+                        {
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <button class="dropbtn">Listagem</button>
+                                    <div class="dropdown-content">
+                                        <a asp-controller="Produto" asp-action="ListagemProduto">Produtos</a>
+                                        <a asp-controller="Cliente" asp-action="ListagemCliente">Clientes</a>
+                                        <a asp-controller="Fornecedor" asp-action="ListagemFornecedor">Fornecedores</a>
+                                        <a asp-controller="CompraVenda" asp-action="ListagemCompraVenda">Histórico de Transações</a>
+                                        <a asp-controller="Usuario" asp-action="ListagemUsuario">Usuários</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
 
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <button class="dropbtn">Movimentação de Estoque</button>
-                                <div class="dropdown-content">
-                                    <a asp-controller="CompraVenda" asp-action="CadastroVenda">Registrar Venda</a>
-                                    <a asp-controller="CompraVenda" asp-action="CadastroCompra">Registrar Compra</a>
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <button class="dropbtn">Movimentação de Estoque</button>
+                                    <div class="dropdown-content">
+                                        <a asp-controller="CompraVenda" asp-action="CadastroVenda">Registrar Venda</a>
+                                        <a asp-controller="CompraVenda" asp-action="CadastroCompra">Registrar Compra</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
 
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <button class="dropbtn">Cadastrar</button>
-                                <div class="dropdown-content">
-                                    <a asp-controller="Produto" asp-action="CadastroProduto">Produto</a>
-                                    <a asp-controller="Cliente" asp-action="CadastroCliente">Cliente</a>
-                                    <a asp-controller="Fornecedor" asp-action="CadastroFornecedor">Fornecedor</a>
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <button class="dropbtn">Cadastrar</button>
+                                    <div class="dropdown-content">
+                                        <a asp-controller="Produto" asp-action="CadastroProduto">Produto</a>
+                                        <a asp-controller="Cliente" asp-action="CadastroCliente">Cliente</a>
+                                        <a asp-controller="Fornecedor" asp-action="CadastroFornecedor">Fornecedor</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="nav-button">
-                                <a asp-controller="Home" asp-action="Sobre">
-                                    <button class="dropbtn">Sobre</button>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="nav-button">
-                                <button type="button" class="dropbtn" data-toggle="modal" data-target="#loginModal">
-                                    Login
-                                </button>
-                            </div>
-                        </li>
+                            </li>
+                            <li class="nav-item">
+                                <div class="nav-button">
+                                    <a asp-controller="Home" asp-action="Sobre">
+                                        <button class="dropbtn">Sobre</button>
+                                    </a>
+                                </div>
+                            </li>
 
-                        <li class="nav-item">
-                            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header border-bottom-0">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-title text-center">
-                                                <h4>Login</h4>
-                                            </div>>
-                                            <form asp-controller="Usuario" asp-action="LogarUsuario" method="post">
-                                                <div class="d-flex flex-column text-center">
-                                                    <div class="form-group">
-                                                        <input class="form-control" id="Email" asp-for="Email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" id="Senha" placeholder="Senha" asp-for="Senha">
-                                                    </div>
-                                                    <a asp-controller="Usuario">
-                                                        <input type="submit" class="btn-round" href="~/UsuarioController/LogarUsuariop">
-                                                        @*<button type="button" class="btn btn-info btn-block btn-round">Login</button>*@
-                                                    </a>
+                            <li class="nav-item">
+                                <div class="nav-button">
+                                    <button type="button" class="dropbtn">
+                                        <a asp-area="" asp-controller="Usuario" asp-action="LogOff">Logoff</a>
+                                    </button>
+
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <div class="nav-button">
+                                    <a asp-controller="Home" asp-action="Sobre">
+                                        <button class="dropbtn">Sobre</button>
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <div class="nav-button">
+                                    <button type="button" class="dropbtn" data-toggle="modal" data-target="#loginModal">
+                                        Login
+                                    </button>
+                                </div>
+                            </li>
+                        }
+                        @if (ViewBag.Logado == false || ViewBag.Logado == null)
+                        {
+                            <li class="nav-item">
+                                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-bottom-0">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-title text-center">
+                                                    <h4>Login</h4>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-center">
-                                            <div class="signup-section">
-                                                Não é um menbro ainda?
-                                                <a asp-controller="Usuario" asp-action="CadastroUsuario" class="text-info">Registrar</a>.
+                                                <form asp-controller="Usuario" asp-action="LogarUsuario" method="post">
+                                                    <div class="d-flex flex-column text-center">
+                                                        <div class="form-group">
+                                                            <input type="email" class="form-control" id="Email" placeholder="Email" asp-for="usuario.Email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="password" class="form-control" id="Senha" placeholder="Senha" asp-for="usuario.Senha">
+                                                        </div>
+                                                        <a asp-controller="Usuario">
+                                                            <input type="submit" class="btn-dark" href="~/UsuarioController/LogarUsuario">
+                                                        </a>
+                                                        <span class="text-danger"> @ViewBag.Erro</span>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+                                                <div class="signup-section">
+                                                    Não é um membro ainda?
+                                                    <a asp-controller="Usuario" asp-action="CadastroUsuario" class="text-info">Registrar</a>.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

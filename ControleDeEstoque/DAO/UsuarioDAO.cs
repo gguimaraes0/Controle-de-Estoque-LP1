@@ -68,23 +68,5 @@ namespace ControleDeEstoque.DAO
 
             return parametros;
         }
-
-        //public bool LoginJaExiste(string Login)
-        //{
-        //    string sql = $"select * from tb_Usuarios where EmailUsuario = '{Login}'";
-        //    DataTable tabela = ConexaoDB.ExecutaSelect(sql);
-        //    return tabela.Rows.Count > 0;
-        //}
-        //public  UsuarioViewModel RetornaUsuarioLogado(UsuarioViewModel usuario)
-        //{
-        //    string sql = $"select * from Usuarios WHERE EmailUsuario ='{usuario.Email}' AND SenhaUsuario= '{usuario.Senha}'";
-        //    DataTable tabela = ConexaoDB.ExecutaSelect(sql);
-        //    if (tabela.Rows.Count == 0)
-        //        return null;
-        //    else
-        //    {
-        //        return MontaModel(tabela.Rows[0]);
-        //    }
-        //}
     }
 }

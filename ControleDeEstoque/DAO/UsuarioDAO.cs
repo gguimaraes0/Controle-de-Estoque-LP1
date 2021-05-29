@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ControleDeEstoque.DAO
@@ -23,16 +25,23 @@ namespace ControleDeEstoque.DAO
             parametros[6] = new SqlParameter("CEPUsuario", usuario.CEP);
             return parametros;
         }
-         protected override UsuarioViewModel MontaModel(DataRow registro)
+        protected override UsuarioViewModel MontaModel(DataRow registro)
         {
             UsuarioViewModel U = new UsuarioViewModel();
-            U.Email = registro["EmailUsuario"].ToString();
-            U.Senha = registro["SenhaUsuario"].ToString();
-            U.Nome = registro["NomeUsuario"].ToString();
-            U.Numero = registro["NumeroUsuario"].ToString();
-            U.Complemento = registro["ComplementoUsuario"].ToString();
-            U.Telefone = registro["TelefoneUsuario"].ToString();
-            U.CEP = registro["CEPUsuario"].ToString();
+            if(U.Email != null)
+              U.Email = registro["EmailUsuario"].ToString();
+            if (U.Senha != null)
+                U.Senha = registro["SenhaUsuario"].ToString();
+            if (U.Nome != null)
+                U.Nome = registro["NomeUsuario"].ToString();
+            if (U.Numero != null)
+                U.Numero = registro["NumeroUsuario"].ToString();
+            if (U.Email != null)
+                U.Email = registro["ComplementoUsuario"].ToString();
+            if (U.Telefone != null)
+                U.Telefone = registro["TelefoneUsuario"].ToString();
+            if (U.CEP != null)
+                U.CEP = registro["CEPUsuario"].ToString();
 
             return U;
         }
@@ -42,22 +51,40 @@ namespace ControleDeEstoque.DAO
             NomeSpListagem = "spListagemUsuarios";
         }
 
-        public bool LoginJaExiste(string Login)
+        public UsuarioViewModel ValidaLogin(UsuarioViewModel usuario)
         {
-            string sql = $"select * from tb_Usuarios where EmailUsuario = '{Login}'";
-            DataTable tabela = ConexaoDB.ExecutaSelect(sql);
-            return tabela.Rows.Count > 0;
-        }
-        public  UsuarioViewModel RetornaUsuarioLogado(UsuarioViewModel usuario)
-        {
-            string sql = $"select * from Usuarios WHERE EmailUsuario ='{usuario.Email}' AND SenhaUsuario= '{usuario.Senha}'";
-            DataTable tabela = ConexaoDB.ExecutaSelect(sql);
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaLogin", CriaParametrosLogin(usuario));
             if (tabela.Rows.Count == 0)
                 return null;
             else
-            {
                 return MontaModel(tabela.Rows[0]);
-            }
         }
+
+        protected SqlParameter[] CriaParametrosLogin(UsuarioViewModel usuario)
+        {
+            SqlParameter[] parametros = new SqlParameter[2];
+            parametros[0] = new SqlParameter("EmailUsuario", usuario.Email);
+            parametros[1] = new SqlParameter("SenhaUsuario", usuario.Senha);
+
+            return parametros;
+        }
+
+        //public bool LoginJaExiste(string Login)
+        //{
+        //    string sql = $"select * from tb_Usuarios where EmailUsuario = '{Login}'";
+        //    DataTable tabela = ConexaoDB.ExecutaSelect(sql);
+        //    return tabela.Rows.Count > 0;
+        //}
+        //public  UsuarioViewModel RetornaUsuarioLogado(UsuarioViewModel usuario)
+        //{
+        //    string sql = $"select * from Usuarios WHERE EmailUsuario ='{usuario.Email}' AND SenhaUsuario= '{usuario.Senha}'";
+        //    DataTable tabela = ConexaoDB.ExecutaSelect(sql);
+        //    if (tabela.Rows.Count == 0)
+        //        return null;
+        //    else
+        //    {
+        //        return MontaModel(tabela.Rows[0]);
+        //    }
+        //}
     }
 }

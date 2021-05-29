@@ -37,16 +37,15 @@ namespace ControleDeEstoque.Controllers
         public IActionResult CadastrarUsuario(UsuarioViewModel usuario)
         {
             try
-            {
+           {
                 // ValidaDados(curriculo, Operacao);
 
                 UsuarioDAO dao = new UsuarioDAO();
 
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                 usuario.Codigo = usuario.Codigo;
-                usuario.Senha = "admin";
                 dao.Insert(usuario);
-                return RedirectToAction("index");
+                return View("../Home/Index");
             }
             catch (Exception erro)
             {
@@ -54,42 +53,11 @@ namespace ControleDeEstoque.Controllers
             }
         }
 
-        //public IActionResult FazLogin(string usuario, string senha)
-        //{
-        //    ////Este é apenas um exemplo, aqui você deve consultar na sua tabela de usuários
-        ////se existe esse usuário e senha
-        //using ( dc = new ())
-        //{
-        //    var v = dc.Usuarios.Where(a => a.NomeUsuario.Equals(u.NomeUsuario) && a.Senha.Equals(u.Senha)).FirstOrDefault();
-        //    if (v != null)
-        //    {
-        //        Session["usuarioLogadoID"] = v.Id.ToString();
-        //        Session["nomeUsuarioLogado"] = v.NomeUsuario.ToString();
-        //        return RedirectToAction("Index");
-        //    }
-        //}
-
-        //    foreach (var item in collection)
-        //{
-
-        //}
-        //if (usuario == "admin" && senha == "1234")
-        //{
-        //    HttpContext.Session.SetString("Logado", "true");
-        //    return RedirectToAction("index", "Home");
-        //}
-        //else
-        //{
-        //    ViewBag.Erro = "Usuário ou senha inválidos!";
-        //    return View("Index");
-        //}
-        //  }
-
         public IActionResult LogarUsuario(UsuarioViewModel usuario)
         {
             try
             {
-                var usuarioValido = UsuarioDAO.RetornaUsuarioLogado(usuario);
+                var usuarioValido = UsuarioDAO.ValidaLogin(usuario);
                 if (usuarioValido != null)
                 {
                     HttpContext.Session.SetString("Logado", "true");

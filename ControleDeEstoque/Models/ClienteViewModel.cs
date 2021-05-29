@@ -7,7 +7,6 @@ namespace ControleDeEstoque.Models
 {
     public class ClienteViewModel : PadraoViewModel
     {
-        public string Senha { get; set; }
         public string DataNascimento { get; set; }
         public string CNPJ { get; set; }
         public string CPF { get; set; }

@@ -48,6 +48,7 @@ namespace ControleDeEstoque.Controllers
                 compra.Tipo = "Compra";
                 compra.Data = DateTime.Now.ToString();
                 dao.Insert(compra);
+
                 return View("../Home/Index");
             }
             catch (Exception erro)
@@ -55,17 +56,16 @@ namespace ControleDeEstoque.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public IActionResult CadastrarVenda(UsuarioViewModel usuario)
+        public IActionResult CadastrarVenda(CompraVendaViewModel venda)
         {
             try
             {
-                // ValidaDados(curriculo, Operacao);
-
-                UsuarioDAO dao = new UsuarioDAO();
-
+                CompraVendaDAO dao = new CompraVendaDAO();
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                usuario.Codigo = usuario.Codigo;
-                dao.Insert(usuario);
+                venda.Tipo = "Venda";
+                venda.Data = DateTime.Now.ToString();
+
+                dao.Insert(venda);
                 return View("../Home/Index");
             }
             catch (Exception erro)

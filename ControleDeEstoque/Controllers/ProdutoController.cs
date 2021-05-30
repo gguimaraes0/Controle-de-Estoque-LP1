@@ -60,6 +60,8 @@ namespace ControleDeEstoque.Controllers
 
                 ProdutoDAO dao = new ProdutoDAO();
 
+                produto.ImagemEmByte = ConvertImageToByte(produto.Imagem);
+
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                 dao.Insert(produto);
                 return View("../Home/Index");

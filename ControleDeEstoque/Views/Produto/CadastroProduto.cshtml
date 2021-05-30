@@ -60,7 +60,7 @@
             <label>Imagem</label>
         </div>
         <br />
-        <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary" asp-for="produto.Imagem">
+        <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
         <img id="imgPreview" src="data:image/jpeg;base64,@Model.produto.ImagemEmBase64" class="img-responsive"
              width="200">
         <br />

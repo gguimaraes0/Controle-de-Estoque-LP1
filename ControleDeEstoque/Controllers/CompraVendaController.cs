@@ -1,4 +1,5 @@
-﻿using ControleDeEstoque.Models;
+﻿using ControleDeEstoque.DAO;
+using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -33,6 +34,44 @@ namespace ControleDeEstoque.Controllers
         public IActionResult ListagemCompraVenda()
         {
             return View("ListagemCompraVenda");
+        }
+
+        public IActionResult CadastrarCompra(CompraVendaViewModel compra)
+        {
+            try
+            {
+                // ValidaDados(curriculo, Operacao);
+
+                CompraVendaDAO dao = new CompraVendaDAO();
+
+                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                compra.Tipo = "Compra";
+                compra.Data = DateTime.Now.ToString();
+                dao.Insert(compra);
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+        public IActionResult CadastrarVenda(UsuarioViewModel usuario)
+        {
+            try
+            {
+                // ValidaDados(curriculo, Operacao);
+
+                UsuarioDAO dao = new UsuarioDAO();
+
+                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                usuario.Codigo = usuario.Codigo;
+                dao.Insert(usuario);
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
     }
 }

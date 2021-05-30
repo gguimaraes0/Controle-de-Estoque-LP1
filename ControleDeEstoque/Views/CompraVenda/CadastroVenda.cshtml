@@ -1,6 +1,6 @@
 ﻿@model MainViewModel
 
-<div>
+<form>
     <div class="row">
         <label>Registro de Venda</label>
     </div>
@@ -34,22 +34,31 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Data da Venda</label>
+            <label>Codigo do Produto</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="compraVenda.Data" />
+            <input type="text" asp-for="compraVenda.CodigoProduto" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Lista\quantidade dos produtos ... como fazer??</label>
+            <label>Quantidade</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="compraVenda.ListCodigoProduto" />
+            <input type="text" asp-for="compraVenda.Quantidade" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label>Data da Venda</label>
+        </div>
+        <div class="col-3">
+            <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
         </div>
     </div>
 
     <input type="submit" value="Cadastrar" />
 
-</div>
+</form>

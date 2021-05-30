@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Models
 {
-    public class CompraVendaViewModel
+    public class CompraVendaViewModel : PadraoViewModel
     {
         public int CodigoFornecedor { get; set; }
         public int CodigoCliente { get; set; }
         public int CodigoUsuario { get; set; }
         public int Codigo { get; set; }
-        public string Tipo { get; set; }// Compra ou Venda ou Adquirir (char)
+        public string Tipo { get; set; }
         public string Data { get; set; }
-        public List<int> ListCodigoProduto { get; set; }
+        public int CodigoProduto { get; set; }
         public int Quantidade { get; set; }
     }
 }

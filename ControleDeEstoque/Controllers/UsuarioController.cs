@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class UsuarioController : DefaultController
+    public class UsuarioController : Controller
     {
 
         private readonly ILogger<UsuarioController> _logger;
@@ -20,8 +20,8 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult CadastroUsuario()
         {
-            UsuarioViewModel usuario = new UsuarioViewModel();
-            return View("CadastroUsuario", usuario);
+            MainViewModel mainViewModel = new MainViewModel();
+            return View("CadastroUsuario", mainViewModel);
         }
 
         public IActionResult ListagemUsuario()

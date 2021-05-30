@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form asp-controller="Produto" asp-action="CadastrarProduto">
+<form asp-controller="Produto" asp-action="CadastrarProduto" enctype="multipart/form-data">
 
     <div class="row">
         <label>Cadastro de Produto</label>
@@ -59,9 +59,11 @@
         <div class="col-2">
             <label>Imagem</label>
         </div>
-        <div class="col-3">
-            <input type="text" asp-for="produto.Imagem" />
-        </div>
+        <br />
+        <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary" asp-for="produto.Imagem">
+        <img id="imgPreview" src="data:image/jpeg;base64,@Model.produto.ImagemEmBase64" class="img-responsive"
+             width="200">
+        <br />
     </div>
 
     <div class="row">
@@ -75,4 +77,13 @@
 
     <input type="submit" value="Cadastrar" />
 
+    <script>
+        function exibirImagem() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("imgPreview").src = oFREvent.target.result;
+            };
+        }
+    </script>
 </form>

@@ -28,6 +28,7 @@ namespace ControleDeEstoque.DAO
         protected override UsuarioViewModel MontaModel(DataRow registro)
         {
             UsuarioViewModel U = new UsuarioViewModel();
+
             if(U.Email != null)
               U.Email = registro["EmailUsuario"].ToString();
             if (U.Senha != null)

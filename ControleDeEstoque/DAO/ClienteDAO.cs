@@ -1,72 +1,68 @@
 ﻿using ControleDeEstoque.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ControleDeEstoque.DAO
 {
-    public class ClienteDAO
+    public class ClienteDAO : PadraoDAO<ClienteViewModel>
     {
-        //public void Inserir(ClienteViewModel cliente)
-        //{
-        //    HelperDAO.ExecutaProc("sp_Insert_Clientes", CriaParametros(cliente));
-        //}
-        //public void Alterar(ClienteViewModel cliente)
-        //{
-        //    HelperDAO.ExecutaProc("sp_Update_Clientes", CriaParametros(cliente));
-        //}
-        //private SqlParameter[] CriaParametros(ClienteViewModel produto)
-        ///{
-        ////    SqlParameter[] parametros = new SqlParameter[8];
-        ////    parametros[0] = new SqlParameter("CodProduto", produto.Codigo);
-        ////    parametros[1] = new SqlParameter("CorProduto", produto.Cor);
-        ////    parametros[2] = new SqlParameter("TipoProduto", produto.Tipo);
-        ////    parametros[3] = new SqlParameter("TamanhoProduto", produto.Tamanho);
-        ////    parametros[4] = new SqlParameter("DescricaoProduto", produto.Descricao);
-        ////    parametros[5] = new SqlParameter("QuantidadeDisponivelProduto", produto.Quantidade);
-        ////    parametros[6] = new SqlParameter("CodFornecedor", produto.CodigoFornecedor);
-        ////    parametros[7] = new SqlParameter("FotoProduto", produto.Imagem);
+        protected override SqlParameter[] CriaParametros(ClienteViewModel cliente)
+        {
+            SqlParameter[] parametros = new SqlParameter[9];
+            parametros[0] = new SqlParameter("EmailCliente", cliente.Email);
+            parametros[1] = new SqlParameter("NomeCliente", cliente.Nome);
+            parametros[2] = new SqlParameter("Data_NascimentoCliente", cliente.DataNascimento);
+            parametros[3] = new SqlParameter("NumeroCliente", cliente.Numero);
+            parametros[4] = new SqlParameter("ComplementoCliente", cliente.Complemento);
+            parametros[5] = new SqlParameter("TelefoneCliente", cliente.Telefone);
+            parametros[6] = new SqlParameter("CEPCliente", cliente.CEP);
+            if (cliente.CPF != null)
+            {
+                parametros[7] = new SqlParameter("CPFCliente", cliente.CPF);
+                parametros[8] = new SqlParameter("CNPJCliente", "");
 
-        ////    return parametros;
-        //}
-        //public void Excluir(int id)
-        //{
-        //    //SqlParameter[] p = { new SqlParameter("id", id,) };
-        //    //HelperDAO.ExecutaProc("sp_DeleteDado", p);
-        //}
-        //private ProdutoViewModel MontaProduto(DataRow registro)
-        //{
-        //    ProdutoViewModel p = new ProdutoViewModel();
-        //    p.Codigo = Convert.ToInt32(registro["CodigoProduto"]);
-        //    p.Tipo = Convert.ToInt32(registro["TipoProduto"]);
-        //    p.Cor = registro["CorProduto"].ToString();
-        //    p.Tamanho = registro["TamanhoProduto"].ToString();
-        //    p.Descricao = registro["DescricaoProduto"].ToString();
-        //    p.Quantidade = registro["QuantidadeProduto"].ToString();
-        //    p.CodigoFornecedor = Convert.ToInt32(registro["CodigoFornecedorProduto"]);
-        //    p.Imagem = registro["FotoProduto"].ToString();
+            }
+            else
+            {
+                parametros[7] = new SqlParameter("CNPJCliente", cliente.CNPJ);
+                parametros[8] = new SqlParameter("CPFCliente", "");
 
-        //    return p;
-        //}
+            }
 
-        //public ProdutoViewModel Consulta(int id)
-        //{
-        //    SqlParameter[] p = { new SqlParameter("id", id) };
-        //    DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaAluno", p);
-        //    if (tabela.Rows.Count == 0)
-        //        return null;
-        //    else
-        //        return MontaProduto(tabela.Rows[0]);
-        //}
-        //public List<ProdutoViewModel> Listagem()
-        //{
-        //    List<ProdutoViewModel> lista = new List<ProdutoViewModel>();
-        //    DataTable tabela = HelperDAO.ExecutaProcSelect("sp_Listar", null);
-        //    foreach (DataRow registro in tabela.Rows)
-        //        lista.Add(MontaProduto(registro));
-        //    return lista;
-        //}
+            return parametros;
+        }
+        protected override ClienteViewModel MontaModel(DataRow registro)
+        {
+            ClienteViewModel U = new ClienteViewModel();
+
+            if (U.Email != null)
+                U.Email = registro["EmailCliente"].ToString();
+            if (U.Nome != null)
+                U.Nome = registro["NomeCliente"].ToString();
+            if (U.DataNascimento != null)
+                U.DataNascimento = registro["Data_NascimentoCliente"].ToString();
+            if (U.Numero != null)
+                U.Numero = registro["NumeroCliente"].ToString();
+            if (U.Email != null)
+                U.Email = registro["ComplementoCliente"].ToString();
+            if (U.Telefone != null)
+                U.Telefone = registro["TelefoneCliente"].ToString();
+            if (U.CEP != null)
+                U.CEP = registro["CEPCliente"].ToString();
+            if (U.CNPJ != null)
+                U.CNPJ = registro["CNPJCliente"].ToString();
+            if (U.CPF != null)
+                U.CPF = registro["CPFCliente"].ToString();
+            return U;
+        }
+        protected override void SetTabela()
+        {
+            Tabela = "Clientes";
+            NomeSpListagem = "spListagemClientes";
+        }
     }
 }

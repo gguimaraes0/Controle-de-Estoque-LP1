@@ -15,13 +15,13 @@ namespace ControleDeEstoque.Models
             cliente = new ClienteViewModel();
             compraVenda = new CompraVendaViewModel();
             produto = new ProdutoViewModel();
-            fornecedor = new FornecedoresViewModel();
+            fornecedor = new FornecedorViewModel();
         }
 
         public UsuarioViewModel usuario { get; set; }
         public ClienteViewModel cliente { get; set; }
         public CompraVendaViewModel compraVenda { get; set; }
         public ProdutoViewModel produto { get; set; }
-        public FornecedoresViewModel fornecedor { get; set; }
+        public FornecedorViewModel fornecedor { get; set; }
     }
 }

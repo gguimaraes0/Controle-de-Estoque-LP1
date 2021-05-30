@@ -1,4 +1,5 @@
-﻿using ControleDeEstoque.Models;
+﻿using ControleDeEstoque.DAO;
+using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,6 +28,24 @@ namespace ControleDeEstoque.Controllers
         public IActionResult ListagemFornecedor()
         {
             return View("ListagemFornecedor");
+        }
+
+        public IActionResult CadastrarFornecedor(FornecedorViewModel fornecedor)
+        {
+            try
+            {
+                // ValidaDados(curriculo, Operacao);
+
+                FornecedorDAO dao = new FornecedorDAO();
+
+                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                dao.Insert(fornecedor);
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
     }
 }

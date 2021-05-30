@@ -15,7 +15,5 @@ namespace ControleDeEstoque.Models
         public string Data { get; set; }
         public List<int> ListCodigoProduto { get; set; }
         public int Quantidade { get; set; }
-
-
     }
 }

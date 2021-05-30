@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Models
 {
-    public class FornecedoresViewModel : PadraoViewModel
+    public class FornecedorViewModel : PadraoViewModel
     {
         public int CNPJ { get; set; }
         public int Codigo { get; set; }

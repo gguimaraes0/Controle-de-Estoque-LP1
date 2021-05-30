@@ -1,12 +1,11 @@
 ﻿@model MainViewModel
 
 
-<div>
+<form asp-controller="Cliente" asp-action="CadastrarCliente">
 
     <div class="row">
         <label>Cadastro de Usuário</label>
     </div>
-
     <div>
         <label for="pj">Pessoa Jurídica</label>
         <input type="checkbox" id="pj" name="pj" value="Pessoa Jurídica" onchange="checkPJ()">
@@ -51,7 +50,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <div class="row">
         <div class="col-2">
@@ -136,4 +135,4 @@
 
     <input type="submit" value="Cadastrar" />
 
-</div>
+</form>

@@ -1,10 +1,12 @@
 ﻿using ControleDeEstoque.DAO;
 using ControleDeEstoque.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,22 +40,17 @@ namespace ControleDeEstoque.Controllers
             return View("ListagemProduto");
         }
 
-
-        //public IActionResult NovoProduto()
-        //{
-        //    try
-        //    {
-        //        ProdutoViewModel produto = new ProdutoViewModel();
-        //        //incluir
-
-        //        return View("CadastroProduto", produto);
-        //    }
-        //    catch (Exception erro)
-        //    {
-        //        return View("Error", new ErrorViewModel(erro.Message));
-        //    }
-
-        //}
+        public byte[] ConvertImageToByte(IFormFile file)
+        {
+            if (file != null)
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            else
+                return null;
+        }
 
         public IActionResult CadastrarProduto(ProdutoViewModel produto)
         {
@@ -64,16 +61,14 @@ namespace ControleDeEstoque.Controllers
                 ProdutoDAO dao = new ProdutoDAO();
 
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                produto.Codigo = produto.Codigo;
-                produto.Imagem = "0x31353136383531363834313638";
                 dao.Insert(produto);
-                return RedirectToAction("index");
+                return View("../Home/Index");
             }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-     
+
     }
 }

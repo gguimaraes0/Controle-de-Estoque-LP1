@@ -1,4 +1,5 @@
-﻿using ControleDeEstoque.Models;
+﻿using ControleDeEstoque.DAO;
+using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -29,6 +30,25 @@ namespace ControleDeEstoque.Controllers
         public IActionResult ListagemCliente()
         {
             return View("ListagemCliente");
+        }
+
+        public IActionResult CadastrarCliente(ClienteViewModel cliente)
+        {
+            try
+            {
+                // ValidaDados(curriculo, Operacao);
+
+                ClienteDAO dao = new ClienteDAO();
+
+                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+
+                dao.Insert(cliente);
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
     }
 }

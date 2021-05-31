@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Sobre";
 }
+<link rel="stylesheet" href="~/css/home.css" />
 <div class="container text-center">
     <h1>Developers</h1>
     <p>Projeto desenvolvido por: </p>
@@ -8,39 +9,51 @@
     <div class="row">
         <div class="col-sm-4">
             <p><strong>Gustavo Santos Guimarães</strong></p><br>
-            <img src="~/images/Gusta.png" alt="picture" class="img-responsive">
+            <img src="~/img/Gusta.png" alt="picture" class="img-responsive cima">
         </div>
         <div class="col-sm-4">
-            <p><strong>Guilherme Simon Lehr</strong></p><br>
-            <img src="~/images/Lehr.png" alt="picture" class="img-responsive">
+            <p ><strong>Guilherme Simon Lehr</strong></p><br>
+            <img src="~/img/Lehr.png" alt="picture" class="img-responsive cima">
         </div>
 
         <div class="col-sm-4">
-            <p><strong>Caio Foramiglio Vieira</strong></p><br>
-            <img src="~/images/Caio.jpg" alt="picture" class="img-responsive">
+            <p ><strong>Caio Foramiglio Vieira</strong></p><br>
+            <img src="~/img/Caio.png" alt="picture" class="img-responsive cima">
         </div>
 
     </div>
     <div class="row row_bottom">
         <div class="col-sm-4">
-            <p><strong>Matheus Faria Sarquis</strong></p><br>
-            <img src="~/images/Matheus.png" alt="picture" class="img-responsive diferentao">
+            <br />
+            <p class="campos"><strong>Matheus Faria Sarquis</strong></p><br>
+            <img src="~/img/Matheus.png" alt="picture" class="img-responsive baixo">
         </div>
         <div class="col-sm-4">
-            <p><strong>Lucas Frias Oliveira</strong></p><br>
-            <img src="~/images/Frias.png" alt="picture" class="img-responsive diferentao">
+            <br />
+            <p class="campos"><strong>Lucas Frias Oliveira</strong></p><br>
+            <img src="~/img/Frias.png" alt="picture" class="img-responsive baixo">
         </div>
     </div>
 
 </div>
 
 <style>
-    h4:last-child {
-        font-size: 40px;
-        font-weight: bold;
+    img {
+        max-width: 300px;
+        max-height: 250px;
+        width: auto;
+        height: auto;
+       
     }
-
-    .diferentao {
-        max-height: 441px;
+        img.baixo {
+            margin: -25px 0px;
+        }
+    .campos {
+        margin: 20px 0px;
+    }
+    p {
+        margin: 0px;
+        color: darkorange;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     }
 </style>

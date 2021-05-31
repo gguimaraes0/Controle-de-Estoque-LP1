@@ -1,4 +1,5 @@
 ﻿@model MainViewModel
+    <link rel="stylesheet" href="~/css/listagem.css" />
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,14 +10,14 @@
     <table class="table table-responsive">
         <tr>
             <th />
-            <th>Nome </th>
-            <th>CPF/CNPJ </th>
-            <th>Email </th>
-            <th>Telefone</th>
-            <th>Data de Nascimento</th>
-            <th>Cep</th>
-            <th>Número</th>
-            <th>Complemento</th>
+            <th class="cabecalho">Nome </th>
+            <th class="cabecalho">CPF/CNPJ </th>
+            <th class="cabecalho">Email </th>
+            <th class="cabecalho">Telefone</th>
+            <th class="cabecalho">Data de Nascimento</th>
+            <th class="cabecalho">Cep</th>
+            <th class="cabecalho">Número</th>
+            <th class="cabecalho">Complemento</th>
         </tr>
 
         @foreach (ClienteViewModel u in Model.clientes)
@@ -37,12 +38,12 @@
                     <td>@u.CPF</td>
                 }
 
-                <td>@u.Email</td>
-                <td>@u.Telefone</td>
-                <td>@u.DataNascimento</td>
-                <td>@u.CEP</td>
-                <td>@u.Numero</td>
-                <td>@u.Complemento</td>
+                <td class="lista">@u.Email</td>
+                <td class="lista">@u.Telefone</td>
+                <td class="lista">@u.DataNascimento</td>
+                <td class="lista">@u.CEP</td>
+                <td class="lista">@u.Numero</td>
+                <td class="lista">@u.Complemento</td>
             </tr>
         }
     </table>

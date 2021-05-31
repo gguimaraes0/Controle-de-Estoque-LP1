@@ -3,10 +3,10 @@ USE [master]
 GO
 /****** Object:  Database [N2_curriculo]    Script Date: 05/04/2021 10:03:08 ******/
 CREATE DATABASE [Controle_De_Estoque]
-
+GO
 USE [Controle_De_Estoque]
 
-drop table Fornecedores
+--drop table Fornecedores
 CREATE TABLE Fornecedores(
 	CodFornecedor int IDENTITY(1000,1)  NOT NULL PRIMARY KEY,
     CNPJFornecedor varchar(255)  NOT NULL,
@@ -52,25 +52,36 @@ CREATE TABLE Tipos_Produtos(
 )
 Go
 
+INSERT INTO Tipos_Produtos values ('CALÇA');
+
+INSERT INTO Tipos_Produtos values ('CAMISETA');
+
+INSERT INTO Tipos_Produtos values ('JAQUETA');
+
+INSERT INTO Tipos_Produtos values ('GORRO');
+
+INSERT INTO Tipos_Produtos values ('MEIA');
+
+INSERT INTO Tipos_Produtos values ('CUECA');
+
+
+
 Create Table Produtos(
 	CodProduto int IDENTITY(1000,1) NOT NULL PRIMARY KEY,
 	TipoProduto int FOREIGN KEY REFERENCES Tipos_Produtos (CodTipo) NULL,
-	
 	CorProduto varchar(255) NULL,
 	TamanhoProduto varchar(255) NULL,
 	DescricaoProduto varchar(255) NULL,
 	QuantidadeDisponivelProduto varchar (255) NULL,
-	FotoProduto varbinary(max) Null,
 	CodFornecedor int FOREIGN KEY REFERENCES Fornecedores (CodFornecedor) Null
 )
 Go
-
 --drop table [Compras_Vendas]
 CREATE TABLE [Compras_Vendas](
 	ID int IDENTITY(1001,1) NOT NULL PRIMARY KEY,
 	Tipo varchar(255) NOT NULL,
 	[Data] varchar(16) NOT NULL,
-	CodProdutos int FOREIGN KEY REFERENCES Produtos(CodProduto) Null,
+	CodProduto int FOREIGN KEY REFERENCES Produtos(CodProduto) Null,
 	Quantidade varchar(10) NOT NULL,
 	CodCliente int FOREIGN KEY REFERENCES Clientes (CodCliente) Null,
 	CodFornecedor int FOREIGN KEY REFERENCES Fornecedores (CodFornecedor) Null,
@@ -83,94 +94,54 @@ CREATE TABLE Cores_Produtos(
 	Cor varchar(255) NOT NULL,
 )
 Go
+
+
+INSERT INTO Cores_Produtos values ('AZUL');
+INSERT INTO Cores_Produtos values ('AMARELO');
+INSERT INTO Cores_Produtos values ('VERMELHO');
+INSERT INTO Cores_Produtos values ('AZUL');
+INSERT INTO Cores_Produtos values ('PRETO');
+INSERT INTO Cores_Produtos values ('BRANCO');
+INSERT INTO Cores_Produtos values ('VERDE');
+INSERT INTO Cores_Produtos values ('CINZA');
+
+ --====================================================================================================================================================================
+ --========================================================FUNCTION========================================================================
+ --====================================================================================================================================================================
+create function fnc_ConsultaLogin (@EmailUsuario varchar(max), @SenhaUsuario varchar(max))
+returns @tbl_ConsultaLogin table
+(
+	EmailUsuario varchar(max),
+	SenhaUsuario	varchar(max)
+)
+as
+begin	
+	begin
+		insert into @tbl_ConsultaLogin
+		select EmailUsuario, SenhaUsuario from Usuarios where EmailUsuario = @EmailUsuario and SenhaUsuario = @SenhaUsuario
+	end
+	return
+end
+go
+--Function Utilizada para realizar a consulta do login, isto é, a verificação do login já existir ou não no banco
 --====================================================================================================================================================================
 --====================================================================== PROCEDURES =======================================================================
 --====================================================================================================================================================================
-CREATE procedure validaCPF (@CPF as varchar(11) )
-as
-BEGIN
--- declaração das variáveis locais
-declare @n int
-declare @soma int
-declare @multi int
-declare @digito1 int
-declare @digito2 int
-
-if len(rtrim(ltrim(@CPF))) <> 11
-begin
- Return 0 -- sai da stored procedure caso o CPF esteja no tamanho incorreto
-end
-
--- calculando o primeiro digito...
-set @soma = 0
-set @multi = 10
-
-WHILE (@n <= 9 )
-begin
- set @soma = @soma + cast(SUBSTRING(@cpf, @n, 1) as int) * @multi;
- set @multi = @multi -1;
- set @n = @n + 1
-end
-
-set @soma = @soma % 11 -- % -> módulo
-
-if @soma <=1
-set @digito1 = 0
-
-else
- set @digito1 = 11 - @soma
-
---calculando o segundo digito...
-set @soma = 0
-set @multi = 11
-set @n = 1
-
-WHILE (@n <= 9 )
-begin
- set @soma = @soma + cast(SUBSTRING(@cpf, @n, 1) as int) * @multi;
- set @multi = @multi -1;
- set @n = @n + 1
-end
-
-set @soma = (@soma + @digito1 * @multi);
-set @soma = @soma % 11 -- % -> módulo
-
-if @soma <=1
- set @digito2 = 0
-
-else
- set @digito2 = 11 - @soma
-
---comparando os digitos digitados com os calculados...
---print 'digito 1: ' + cast( @digito1 as varchar)
---print 'digito 2: ' + cast( @digito2 as varchar)
---print char(13) -- pula uma linha!!!
-
-if (cast(SUBSTRING(@cpf, 10, 1) as int) = @digito1) and
- (cast(SUBSTRING(@cpf, 11, 1) as int) = @digito2)
- Return 1
-
-else
- Return 0
-
-END
-
- --====================================================================================================================================================================
- --====================================================================================================================================================================
- --====================================================================================================================================================================
 create procedure spDelete
 (
  @id int ,
+ @codName varchar(max),
  @tabela varchar(max)
 )
 as
 begin
  declare @sql varchar(max);
  set @sql = ' delete ' + @tabela +
- ' where id = ' + cast(@id as varchar(max))
+ ' where '+@codName+' = ' + cast(@id as varchar(max))
  exec(@sql)
 end
 GO
+--Sp para deletar qualquer dado do banco, sendo passado a tabela como parametro e o id que se deseja apagar naquela tabela
 --====================================================================================================================================================================
  --====================================================================================================================================================================
  --====================================================================================================================================================================
@@ -184,33 +155,61 @@ as
 begin
 select * from fnc_ConsultaLogin(@EmailUsuario, @SenhaUsuario)
 end
+GO
+--sp que executa em conjunto com a function para consultar login
 
-create procedure spConsulta
-(
- @id int ,
- @tabela varchar(max)
-)
+
+create procedure spListagemCor
 as
 begin
- declare @sql varchar(max);
- set @sql = 'select * from ' + @tabela +
- ' where id = ' + cast(@id as varchar(max))
- exec(@sql)
- end 
- GO
-
-create procedure spListagem
-(
- @tabela varchar(max),
- @ordem varchar(max))
-as
-begin
- exec('select * from ' + @tabela +
- ' order by ' + @ordem)
+ exec('select * from Cores_Produtos order by CodCores');
 end
 GO
+--sp que lista todas as cores
 
+create procedure spListagemTipo
+as
+begin
+ exec('select * from Tipos_Produtos order by CodTipo');
+end
+GO
+--sp que lista todas os tipos de produtos
 
+create procedure spListagemCliente
+as
+begin
+ exec('select * from Clientes');
+end
+GO
+--sp que lista todas os clientes cadastrados
+create procedure spListagemFornecedor
+as
+begin
+ exec('select * from Fornecedores order by CodFornecedor');
+end
+GO
+--sp que lista todas os fornecedores cadastrados
+create procedure spListagemUsuario
+as
+begin
+ exec('select * from Usuarios' )
+end
+GO
+--sp que lista todas os usuarios cadastrados
+create procedure spListagemProduto
+as
+begin
+ exec('select * from Produtos' )
+end
+GO
+--sp que lista todas os produtos cadastrados
+create procedure spListagemCompras_Vendas
+as
+begin
+ exec('select * from Compras_Vendas' )
+end
+GO
+--sp que lista todas as compras ou vendas cadastrados
 create procedure spInsert_Usuarios
 (
  @EmailUsuario varchar(max),
@@ -236,7 +235,7 @@ SenhaUsuario)
  (@EmailUsuario, @NomeUsuario, @CEPUsuario, @NumeroUsuario,@ComplementoUsuario,@TelefoneUsuario, @SenhaUsuario)
 end
 GO
-
+--sp que insere novas informações dos usuarios cadastrados
 create procedure spUpdate_Usuarios
 (
  @CodUsuario int, -- ???
@@ -262,7 +261,7 @@ begin
  where CodUsuario = @CodUsuario
 end
 GO
-
+--sp que atualiza as informações dos usuarios cadastrados
 create procedure spInsert_Fornecedores
 (
  @CNPJFornecedor varchar(max),
@@ -283,7 +282,7 @@ begin
  @ComplementoFornecedor,@TelefoneFornecedor)
 end
 GO
-
+--sp que insere novas informações dos fornecedores cadastrados
 create procedure spUpdate_Fornecedores
 (
  @CodFornecedor int, --- ?
@@ -308,7 +307,7 @@ begin
  where CodFornecedor = @CodFornecedor
 end
 GO
-
+--sp que atualiza as informações dos fornecedores cadastrados
 create procedure spInsert_Clientes
 (
  @CNPJCliente varchar(max),
@@ -329,7 +328,7 @@ begin
  (@CNPJCliente,@CPFCliente, @EmailCliente, @NomeCliente,@Data_NascimentoCliente, @CEPCliente,@NumeroCliente,@ComplementoCliente,@TelefoneCliente)
 end
 GO
-
+--sp que insere novas informações dos cliente cadastrados
 create procedure spUpdate_Clientes
 (
  @CodCliente int, ---- ???
@@ -358,7 +357,7 @@ begin
 where CodCliente = @CodCliente
 end
 GO
-
+--sp que atualiza as informações dos cliente cadastrados
 create procedure spInsert_Produtos
 (
  @CorProduto varchar(max),
@@ -366,14 +365,13 @@ create procedure spInsert_Produtos
  @TamanhoProduto varchar(max),
  @DescricaoProduto varchar(max),
  @QuantidadeDisponivelProduto varchar(max),
- @CodFornecedor int,
- @FotoProduto varbinary(max)
+ @CodFornecedor int
 )
 as
 begin
  insert into Produtos
  values
- (@CorProduto,@TipoProduto, @TamanhoProduto, @DescricaoProduto,@QuantidadeDisponivelProduto, @CodFornecedor,@FotoProduto)
+ (@CorProduto,@TipoProduto, @TamanhoProduto, @DescricaoProduto,@QuantidadeDisponivelProduto, @CodFornecedor)
 end
 GO
 
@@ -385,8 +383,7 @@ create procedure spUpdate_Produtos
  @TamanhoProduto varchar(max),
  @DescricaoProduto varchar(max),
  @QuantidadeDisponivelProduto varchar(max),
- @CodFornecedor int,
- @FotoProduto varbinary(max)
+ @CodFornecedor int
 )
 as
 begin
@@ -396,8 +393,7 @@ begin
  TamanhoProduto = @TamanhoProduto,
  DescricaoProduto = @DescricaoProduto,
  QuantidadeDisponivelProduto = @QuantidadeDisponivelProduto,
- CodFornecedor = @CodFornecedor,
- FotoProduto = @FotoProduto 
+ CodFornecedor = @CodFornecedor
  where CodProduto = @CodProduto
 end
 GO
@@ -405,7 +401,7 @@ GO
 create procedure spInsert_Compras_Vendas
 (
  @Data varchar(max),
- @CodProdutos int,
+ @CodProduto int,
  @Quantidade varchar(max),
  @CodCliente int,
  @CodFornecedor int,
@@ -415,9 +411,9 @@ create procedure spInsert_Compras_Vendas
 as
 begin
  insert into [Compras_Vendas]
- ([Data], CodProdutos,Quantidade,CodCliente,CodFornecedor,CodUsuario, Tipo)
+ ([Data], CodProduto,Quantidade,CodCliente,CodFornecedor,CodUsuario, Tipo)
  values
- (@Data, @CodProdutos, @Quantidade,@CodCliente, @CodFornecedor, @CodUsuario,@Tipo)
+ (@Data, @CodProduto, @Quantidade,@CodCliente, @CodFornecedor, @CodUsuario,@Tipo)
 end
 GO
 
@@ -462,6 +458,8 @@ end
 GO
 
 
+
+
 --====================================================================================================================================================================
 --========================================================================== TRIGGERS ================================================================================
 --====================================================================================================================================================================
@@ -479,6 +477,7 @@ begin
 	end
 	set nocount off
 end
+GO
 
 create trigger trg_DeleteCliente on Clientes
 instead of delete as
@@ -493,6 +492,7 @@ begin
 	end
 	set nocount off
 end
+GO
 
 create trigger trg_DeleteFornecedores on Fornecedores
 instead of delete as
@@ -508,6 +508,7 @@ begin
 	end
 	set nocount off
 end
+GO
 
 create trigger trg_DeleteProduto on Produtos
 instead of delete as
@@ -522,29 +523,7 @@ begin
 	end
 	set nocount off
 end
-
-
-create trigger trg_VerificaCPF_Usuario on Usuarios
-for insert as
-begin
-
-    set nocount on
-
-    declare @CPFUsuario varchar(max)
-	declare @ErroString varchar(60)
-
-	set @CPFUsuario = (select CPFUsuario from inserted)
-	
-    if((select count(CPFUsuario) from Usuarios where CPFUsuario = @CPFUsuario) >= 2)
-    begin
-		set @ErroString = 'O CPF ' + @CPFUsuario +' já foi cadastrado!'
-        raiserror(@ErroString,16,1)
-        rollback tran
-        return
-    end
-
-    set nocount off
-end
+GO
 
 create trigger trg_VerificaCPF_Clientes on Clientes
 for insert as
@@ -567,6 +546,7 @@ begin
 
     set nocount off
 end
+GO
 
 create trigger trg_VerificaCNPJ_Clientes on Clientes
 for insert as
@@ -589,7 +569,7 @@ begin
 
     set nocount off
 end
-
+GO
 
 create trigger trg_VerificaCNPJ_Fornecedores on Fornecedores
 for insert as
@@ -612,6 +592,7 @@ begin
 
     set nocount off
 end
+GO
 
 create trigger trg_VerificaEmail_Usuario on Usuarios
 for insert as
@@ -634,6 +615,7 @@ begin
 
     set nocount off
 end
+GO
 
 Create trigger trg_SomaProduto on Compras_Vendas
 after insert as
@@ -670,19 +652,4 @@ begin
 	end
 	set nocount off
 end
-
-
-create function fnc_ConsultaLogin (@EmailUsuario varchar(max), @SenhaUsuario varchar(max))
-returns @tbl_ConsultaLogin table
-(
-	EmailUsuario varchar(max),
-	SenhaUsuario	varchar(max)
-)
-as
-begin	
-	begin
-		insert into @tbl_ConsultaLogin
-		select EmailUsuario, SenhaUsuario from Usuarios where EmailUsuario = @EmailUsuario and SenhaUsuario = @SenhaUsuario
-	end
-	return
-end
+GO

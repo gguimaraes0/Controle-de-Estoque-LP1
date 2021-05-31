@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class HomeController : DefaultController
+    public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 

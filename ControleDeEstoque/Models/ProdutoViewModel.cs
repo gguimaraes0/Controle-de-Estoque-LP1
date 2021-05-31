@@ -14,7 +14,7 @@ namespace ControleDeEstoque.Models
         public string Tamanho { get; set; }
         public string Descricao { get; set; }
         public string Quantidade { get; set; }
-        public int CodigoFornecedor { get; set; }
+        public string CodigoFornecedor { get; set; }
 
         /// <summary>
         /// Imagem recebida do form pelo controller

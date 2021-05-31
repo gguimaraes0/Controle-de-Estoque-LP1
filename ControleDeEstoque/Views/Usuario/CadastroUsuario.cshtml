@@ -1,15 +1,15 @@
 ﻿@model MainViewModel
 
-
+<link rel="stylesheet" href="~/css/cadastro.css" />
 <form asp-controller="Usuario" asp-action="CadastrarUsuario">
 
     <div class="row">
-        <label>Cadastro de Usuário</label>
+        <label class="titulocadastro">Cadastro de Usuário</label>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Nome</label>
+            <label class="campos">Nome</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Nome" />
@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Email</label>
+            <label class="campos">Email</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Email" />
@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Senha</label>
+            <label class="campos">Senha</label>
         </div>
         <div class="col-3">
             <input type="password" asp-for="usuario.Senha" />
@@ -36,7 +36,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Telefone</label>
+            <label class="campos">Telefone</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
@@ -45,7 +45,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Número</label>
+            <label class="campos">Número</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Numero" />
@@ -54,7 +54,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>CEP</label>
+            <label class="campos">CEP</label>
         </div>
         <div class="col-3">
             <input type="text" id="cep" onchange="buscaCEP()" asp-for="usuario.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
@@ -63,7 +63,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Logradouro</label>
+            <label class="campos">Logradouro</label>
         </div>
         <div class="col-3">
             <input type="text" id="logradouro" />
@@ -72,7 +72,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Complemento</label>
+            <label class="campos">Complemento</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Complemento" />
@@ -81,7 +81,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Bairro</label>
+            <label class="campos">Bairro</label>
         </div>
         <div class="col-3">
             <input type="text" id="bairro" />
@@ -90,7 +90,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Cidade</label>
+            <label class="campos">Cidade</label>
         </div>
         <div class="col-3">
             <input type="text" id="cidade" />
@@ -99,7 +99,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Estado</label>
+            <label class="campos">Estado</label>
         </div>
         <div class="col-3">
             <input type="text" id="estado" />

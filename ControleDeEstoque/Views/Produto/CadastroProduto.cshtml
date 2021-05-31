@@ -3,34 +3,39 @@
     ViewData["Title"] = "Cadastro de Produtos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/cadastro.css" />
 
 <form asp-controller="Produto" asp-action="CadastrarProduto" enctype="multipart/form-data">
 
     <div class="row">
-        <label>Cadastro de Produto</label>
+        <label class="titulocadastro">Cadastro de Produto</label>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Tipo</label>
+            <label for="tipo" class="campos">Tipo</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="produto.Tipo" />
+            <select asp-for="produto.Tipo" asp-items="ViewBag.TipoProduto" class="form-control"> </select>
+            <span asp-validation-for="produto.Tipo" class="text-danger"></span>
+            <br />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Cor</label>
+            <label for="Cor" class="campos">Cor</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="produto.Cor" />
+            <select asp-for="produto.Cor" asp-items="ViewBag.CorProduto" class="form-control"> </select>
+            <span asp-validation-for="produto.Cor" class="text-danger"></span>
+            <br />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Tamanho</label>
+            <label class="campos">Tamanho</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="produto.Tamanho" />
@@ -39,7 +44,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Descrição</label>
+            <label class="campos">Descrição</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="produto.Descricao" />
@@ -48,7 +53,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Quantidade</label>
+            <label class="campos">Quantidade</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="produto.Quantidade" />
@@ -57,7 +62,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Imagem</label>
+            <label class="campos">Imagem</label>
         </div>
         <br />
         <input type="file" asp-for="produto.ImagemEmBase64" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
@@ -65,15 +70,19 @@
              width="200">
         <br />
     </div>
-
+    <br />
     <div class="row">
         <div class="col-2">
-            <label>Código do Fornecedor</label>
+            <label for="fornecedor" class="campos">Fornecedor</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="produto.CodigoFornecedor" />
+            <select asp-for="produto.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
+            <span asp-validation-for="produto.CodigoFornecedor" class="text-danger"></span>
+            <br />
         </div>
     </div>
+
+
 
     <input type="submit" value="Cadastrar" />
 

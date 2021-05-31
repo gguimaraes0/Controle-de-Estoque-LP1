@@ -43,10 +43,42 @@ namespace ControleDeEstoque.DAO
 
             return f;
         }
+
+        private FornecedorViewModel MontaFornecedorSelect(DataRow registro)
+        {
+            FornecedorViewModel f = new FornecedorViewModel()
+            {
+                Codigo = registro["CodFornecedor"].ToString(),
+
+                CNPJ = registro["CNPJFornecedor"].ToString(),
+            
+                Nome = registro["NomeFornecedor"].ToString(),
+          
+                Email = registro["EmailFornecedor"].ToString(),
+          
+                Telefone = registro["TelefoneFornecedor"].ToString(),
+          
+                Numero = registro["NumeroFornecedor"].ToString(),
+           
+                Complemento = registro["ComplementoFornecedor"].ToString(),
+
+                CEP = registro["CEPFornecedor"].ToString()
+            };
+            return f;
+        }
         protected override void SetTabela()
         {
             Tabela = "Fornecedores";
             NomeSpListagem = "spListagemFornecedores";
+        }
+        public List<FornecedorViewModel> ListaFornecedor()
+        {
+          
+            List<FornecedorViewModel> lista = new List<FornecedorViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemFornecedor", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaFornecedorSelect(registro));
+            return lista;
         }
     }
 }

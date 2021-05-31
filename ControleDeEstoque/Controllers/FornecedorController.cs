@@ -1,6 +1,7 @@
 ﻿using ControleDeEstoque.DAO;
 using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace ControleDeEstoque.Controllers
         public IActionResult CadastroFornecedor()
         {
             MainViewModel mainViewModel = new MainViewModel();
+          
             return View("CadastroFornecedor", mainViewModel);
         }
 
@@ -37,7 +39,7 @@ namespace ControleDeEstoque.Controllers
                 // ValidaDados(curriculo, Operacao);
 
                 FornecedorDAO dao = new FornecedorDAO();
-
+                
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                 dao.Insert(fornecedor);
                 return View("../Home/Index");
@@ -47,5 +49,8 @@ namespace ControleDeEstoque.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
+        
+
     }
 }

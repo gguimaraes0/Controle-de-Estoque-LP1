@@ -20,13 +20,14 @@ namespace ControleDeEstoque.DAO
 
             SqlParameter[] parametros = new SqlParameter[7];
             parametros[0] = new SqlParameter("CorProduto", produto.Cor);
-            parametros[1] = new SqlParameter("TipoProduto", produto.Tipo);
+            parametros[1] = new SqlParameter("TipoProduto", int.Parse(produto.Tipo));
             parametros[2] = new SqlParameter("TamanhoProduto", produto.Tamanho);
             parametros[3] = new SqlParameter("DescricaoProduto", produto.Descricao);
             parametros[4] = new SqlParameter("QuantidadeDisponivelProduto", produto.Quantidade);
             parametros[5] = new SqlParameter("FotoProduto", imgByte);
-            parametros[6] = new SqlParameter("CodFornecedor", produto.CodigoFornecedor);
-            //  parametros[6] = new SqlParameter("FotoProduto", produto.Imagem);
+            parametros[6] = new SqlParameter("CodFornecedor", int.Parse(produto.CodigoFornecedor));
+            //parametros[6] = new SqlParameter("CodFornecedor", produto.CodigoFornecedor);
+            // parametros[6] = new SqlParameter("FotoProduto", produto.Imagem);
 
             return parametros;
         }
@@ -39,7 +40,8 @@ namespace ControleDeEstoque.DAO
             p.Tamanho = registro["TamanhoProduto"].ToString();
             p.Descricao = registro["DescricaoProduto"].ToString();
             p.Quantidade = registro["QuantidadeProduto"].ToString();
-            p.CodigoFornecedor = Convert.ToInt32(registro["CodigoFornecedorProduto"]);
+            p.CodigoFornecedor = registro["CodFornecedor"].ToString();
+            //p.CodigoFornecedor = Convert.ToInt32(registro["CodigoFornecedorProduto"]);
             if (registro["FotoProduto"] != DBNull.Value)
                 p.ImagemEmByte = registro["FotoProduto"] as byte[];
             //     p.Imagem = registro["FotoProduto"].ToString();

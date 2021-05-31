@@ -10,6 +10,7 @@ namespace ControleDeEstoque.DAO
 {
     public class ClienteDAO : PadraoDAO<ClienteViewModel>
     {
+        
         public List<ClienteViewModel> Listagem()
         {
             List<ClienteViewModel> lista = new List<ClienteViewModel>();

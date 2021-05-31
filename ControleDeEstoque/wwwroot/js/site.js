@@ -9,9 +9,26 @@
 //    })
 //});
 
-function checkPJ() {
-    debugger
+function apagarItem(pk, tabela) {
+    debugger;
 
+    swal({
+        title: "Tem certeza?",
+        text: "O currículo será apagado para sempre!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-info",
+        cancelButtonClass: "btn-danger",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
+        closeOnConfirm: false
+    },
+        function () {
+            location.href = '/' + tabela + '/Delete?pk=' + pk;
+        });
+}
+
+function checkPJ() {
     if (document.getElementById('divCNPJ').style.display == 'block') {
         document.getElementById('divCNPJ').style.display = 'none';
         document.getElementById('cnpj').value = '';

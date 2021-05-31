@@ -1,5 +1,10 @@
 ﻿@model MainViewModel
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
 <form>
     <table class="table table-responsive">
         <tr>
@@ -19,18 +24,19 @@
             <tr>
                 <td>
                     <a href="" class="btn btn-danger">Apagar</a>
-                    <a href="" class="btn btn-info">Editar</a>
+                    <a href="javascript:apagarItem('@u.Codigo','Cliente')" class="btn btn-info">Editar</a>
                 </td>
 
                 <td>@u.Nome</td>
                 @if (u.CNPJ != "")
-                { 
-                <td>@u.CNPJ</td>
-                }else 
                 {
-                <td>@u.CPF</td>
+                    <td>@u.CNPJ</td>
                 }
-                
+                else
+                {
+                    <td>@u.CPF</td>
+                }
+
                 <td>@u.Email</td>
                 <td>@u.Telefone</td>
                 <td>@u.DataNascimento</td>

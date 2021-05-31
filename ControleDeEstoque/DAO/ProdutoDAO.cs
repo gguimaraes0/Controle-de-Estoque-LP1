@@ -34,7 +34,7 @@ namespace ControleDeEstoque.DAO
         protected override ProdutoViewModel MontaModel(DataRow registro)
         {
             ProdutoViewModel p = new ProdutoViewModel();
-            p.Tipo = Convert.ToInt32(registro["TipoProduto"]);
+            p.Tipo = registro["TipoProduto"].ToString();
             p.Cor = registro["CorProduto"].ToString();
             p.Tamanho = registro["TamanhoProduto"].ToString();
             p.Descricao = registro["DescricaoProduto"].ToString();

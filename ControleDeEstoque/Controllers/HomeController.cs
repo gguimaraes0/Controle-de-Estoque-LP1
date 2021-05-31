@@ -25,7 +25,7 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult Sobre()
         {
-            return View();
+            return View("../Home/Sobre");
         }
 
         public IActionResult Privacy()

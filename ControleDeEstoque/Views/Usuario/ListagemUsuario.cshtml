@@ -1,1 +1,28 @@
-﻿lista de usuario
+﻿@model List<ControleDeEstoque.Models.MainViewModel>
+
+
+<form>
+    <table class="table table-responsive">
+        <tr>
+            <th />
+            <th>Nome </th>
+            <th>Email </th>
+            <th>CEP </th>
+            <th>Telefone</th>
+        </tr>
+
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>
+                    <a href="" class="btn btn-danger">Apagar</a>
+                </td>
+
+                <td>@u.usuario.Nome</td>
+                <td>@u.usuario.Email</td>
+                <td>@u.usuario.CEP</td>
+                <td>@u.usuario.Telefone</td>
+            </tr>
+        }
+    </table>
+</form>

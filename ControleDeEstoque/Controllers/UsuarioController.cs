@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ControleDeEstoque.Controllers
 {
@@ -26,7 +30,17 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult ListagemUsuario()
         {
-            return View("ListagemUsuario");
+            try
+            {
+                UsuarioDAO dao = new UsuarioDAO();
+                List<MainViewModel> lista = new List<MainViewModel>();
+                lista = dao.Listagem();
+                return View("ListagemUsuario",lista);
+            }
+            catch (Exception erro)
+            {
+                return View("../Home/Index");
+            }
         }
 
         public IActionResult CadastrarUsuario(UsuarioViewModel usuario)

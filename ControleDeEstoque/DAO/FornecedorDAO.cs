@@ -27,7 +27,7 @@ namespace ControleDeEstoque.DAO
             FornecedorViewModel f = new FornecedorViewModel();
 
             if (f.CNPJ.ToString() != null)
-                f.CNPJ = Convert.ToInt32(registro["CNPJFornecedor"].ToString());
+                f.CNPJ = registro["CNPJFornecedor"].ToString();
             if (f.Nome != null)
                 f.Nome = registro["NomeFornecedor"].ToString();
             if (f.Email != null)

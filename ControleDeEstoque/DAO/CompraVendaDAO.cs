@@ -27,11 +27,11 @@ namespace ControleDeEstoque.DAO
             CompraVendaViewModel U = new CompraVendaViewModel();
 
             U.Tipo = registro["Tipo"].ToString();
-            U.CodigoCliente = Convert.ToInt32(registro["CodCliente"].ToString());
-            U.CodigoUsuario = Convert.ToInt32(registro["CodUsuario"].ToString());
-            U.CodigoFornecedor = Convert.ToInt32(registro["CodFornecedor"].ToString());
-            U.Quantidade = Convert.ToInt32(registro["Quantidade"].ToString());
-            U.CodigoProduto = Convert.ToInt32(registro["CodProdutos"].ToString());
+            U.CodigoCliente =registro["CodCliente"].ToString();
+            U.CodigoUsuario = registro["CodUsuario"].ToString();
+            U.CodigoFornecedor = registro["CodFornecedor"].ToString();
+            U.Quantidade = registro["Quantidade"].ToString();
+            U.CodigoProduto = registro["CodProdutos"].ToString();
             U.Data = registro["Data"].ToString();
 
             return U;

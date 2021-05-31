@@ -35,7 +35,7 @@
                 <label>CPF</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="cliente.CPF" placeholder="999.999.999-99" onkeydown="javascript: fMasc(this, mCPF);" />
+                <input type="text" id="cpf" asp-for="cliente.CPF" placeholder="999.999.999-99" onkeydown="javascript: fMasc(this, mCPF);" />
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 <label>CNPJ</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="cliente.CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
+                <input type="text" id="cnpj" asp-for="cliente.CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
             </div>
         </div>
     </div>

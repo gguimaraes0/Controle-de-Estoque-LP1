@@ -7,7 +7,7 @@ namespace ControleDeEstoque.Models
 {
     public class TiposProdutosViewModel
     {
-        public int Codigo { get; set; }
+        public string Codigo { get; set; }
         public string Descricao { get; set; }
     }
 }

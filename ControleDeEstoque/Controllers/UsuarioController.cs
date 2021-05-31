@@ -22,12 +22,6 @@ namespace ControleDeEstoque.Controllers
             _logger = logger;
         }
 
-        public IActionResult CadastroUsuario()
-        {
-            MainViewModel mainViewModel = new MainViewModel();
-            return View("CadastroUsuario", mainViewModel);
-        }
-
         public IActionResult ListagemUsuario()
         {
             try

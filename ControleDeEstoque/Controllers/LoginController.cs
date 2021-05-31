@@ -71,5 +71,10 @@ namespace ControleDeEstoque.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+        public IActionResult CadastroUsuario()
+        {
+            MainViewModel mainViewModel = new MainViewModel();
+            return View("../Usuario/CadastroUsuario", mainViewModel);
+        }
     }
 }

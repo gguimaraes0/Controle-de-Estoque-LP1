@@ -15,6 +15,8 @@ namespace ControleDeEstoque.DAO
             SetTabela();
         }
         protected string Tabela { get; set; }
+
+        protected string CodName { get; set; }
         protected string NomeSpListagem { get; set; } = "spListagem";
         protected abstract SqlParameter[] CriaParametros(T model);
         protected abstract T MontaModel(DataRow registro);
@@ -33,6 +35,7 @@ namespace ControleDeEstoque.DAO
         {
             var p = new SqlParameter[]
             {
+                new SqlParameter("CodName", CodName),
                 new SqlParameter("id", id),
                 new SqlParameter("tabela", Tabela)
             };

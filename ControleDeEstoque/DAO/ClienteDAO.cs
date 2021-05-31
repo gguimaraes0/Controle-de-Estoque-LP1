@@ -91,6 +91,7 @@ namespace ControleDeEstoque.DAO
         {
             Tabela = "Clientes";
             NomeSpListagem = "spListagemClientes";
+            CodName = "CodCliente";
         }
     }
 }

@@ -35,7 +35,7 @@ namespace ControleDeEstoque.Controllers
                 UsuarioDAO dao = new UsuarioDAO();
                 List<MainViewModel> lista = new List<MainViewModel>();
                 lista = dao.Listagem();
-                return View("ListagemUsuario",lista);
+                return View(lista);
             }
             catch (Exception erro)
             {

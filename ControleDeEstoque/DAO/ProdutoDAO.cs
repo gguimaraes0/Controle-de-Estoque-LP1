@@ -13,19 +13,13 @@ namespace ControleDeEstoque.DAO
     
         protected override SqlParameter[] CriaParametros(ProdutoViewModel produto)
         {
-
-           object imgByte = produto.ImagemEmByte;
-            if (imgByte == null)
-                imgByte = 0;
-
-            SqlParameter[] parametros = new SqlParameter[7];
+            SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("CorProduto", produto.Cor);
-            parametros[1] = new SqlParameter("TipoProduto", int.Parse(produto.Tipo));
+            parametros[1] = new SqlParameter("TipoProduto", produto.Tipo);
             parametros[2] = new SqlParameter("TamanhoProduto", produto.Tamanho);
             parametros[3] = new SqlParameter("DescricaoProduto", produto.Descricao);
             parametros[4] = new SqlParameter("QuantidadeDisponivelProduto", produto.Quantidade);
-            parametros[5] = new SqlParameter("FotoProduto", imgByte);
-            parametros[6] = new SqlParameter("CodFornecedor", int.Parse(produto.CodigoFornecedor));
+            parametros[5] = new SqlParameter("CodFornecedor", produto.CodigoFornecedor);
             //parametros[6] = new SqlParameter("CodFornecedor", produto.CodigoFornecedor);
             // parametros[6] = new SqlParameter("FotoProduto", produto.Imagem);
 
@@ -42,9 +36,6 @@ namespace ControleDeEstoque.DAO
             p.Quantidade = registro["QuantidadeProduto"].ToString();
             p.CodigoFornecedor = registro["CodFornecedor"].ToString();
             //p.CodigoFornecedor = Convert.ToInt32(registro["CodigoFornecedorProduto"]);
-            if (registro["FotoProduto"] != DBNull.Value)
-                p.ImagemEmByte = registro["FotoProduto"] as byte[];
-            //     p.Imagem = registro["FotoProduto"].ToString();
 
             return p;
         }

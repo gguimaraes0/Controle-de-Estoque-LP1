@@ -62,17 +62,6 @@
 
     <div class="row">
         <div class="col-2">
-            <label class="campos">Imagem</label>
-        </div>
-        <br />
-        <input type="file" asp-for="produto.ImagemEmBase64" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
-        <img id="imgPreview" src="data:image/jpeg;base64,@Model.produto.ImagemEmBase64" class="img-responsive"
-             width="200">
-        <br />
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-2">
             <label for="fornecedor" class="campos">Fornecedor</label>
         </div>
         <div class="col-3">
@@ -82,17 +71,6 @@
         </div>
     </div>
 
-
-
     <input type="submit" value="Cadastrar" />
 
-    <script>
-        function exibirImagem() {
-            var oFReader = new FileReader();
-            oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
-            oFReader.onload = function (oFREvent) {
-                document.getElementById("imgPreview").src = oFREvent.target.result;
-            };
-        }
-    </script>
 </form>

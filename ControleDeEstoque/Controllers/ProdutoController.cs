@@ -46,18 +46,6 @@ namespace ControleDeEstoque.Controllers
             return View("ListagemProduto");
         }
 
-        public byte[] ConvertImageToByte(IFormFile file)
-        {
-            if (file != null)
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    return ms.ToArray();
-                }
-            else
-                return null;
-        }
-
         public IActionResult CadastrarProduto(ProdutoViewModel produto)
         {
             try
@@ -66,7 +54,6 @@ namespace ControleDeEstoque.Controllers
 
                 ProdutoDAO dao = new ProdutoDAO();
 
-                produto.ImagemEmByte = ConvertImageToByte(produto.Imagem);
                 PreparaListaFornecedorParaCombo();
                 PreparaListaTipoParaCombo();
                 PreparaListaCorParaCombo();

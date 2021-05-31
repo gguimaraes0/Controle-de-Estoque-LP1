@@ -10,7 +10,31 @@ namespace ControleDeEstoque.DAO
 {
     public class ProdutoDAO : PadraoDAO<ProdutoViewModel>
     {
-    
+        public List<ProdutoViewModel> Listagem()
+        {
+            List<ProdutoViewModel> lista = new List<ProdutoViewModel>();
+            //string sql = "select * from Usuarios";
+            //DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            var tabela = HelperDAO.ExecutaProcSelect("spListagemProduto", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaProduto(registro));
+            return lista;
+        }
+
+        private ProdutoViewModel MontaProduto(DataRow registro)
+        {
+            ProdutoViewModel u = new ProdutoViewModel();
+            u.Codigo = registro["CodProduto"].ToString();
+            u.CodigoFornecedor = registro["CodFornecedor"].ToString();
+            u.Cor = registro["CorProduto"].ToString();
+            u.Descricao = registro["DescricaoProduto"].ToString();
+            u.Quantidade = registro["QuantidadeDisponivelProduto"].ToString();
+            u.Tamanho = registro["TamanhoProduto"].ToString();
+            u.Tipo = registro["TipoProduto"].ToString();
+
+            return u;
+        }
+
         protected override SqlParameter[] CriaParametros(ProdutoViewModel produto)
         {
             SqlParameter[] parametros = new SqlParameter[6];

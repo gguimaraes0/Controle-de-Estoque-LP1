@@ -29,7 +29,18 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult ListagemFornecedor()
         {
-            return View("ListagemFornecedor");
+            try
+            {
+                FornecedorDAO dao = new FornecedorDAO();
+                MainViewModel fornecedor = new MainViewModel();
+                fornecedor.fornecedores = dao.Listagem();
+
+                return View(fornecedor);
+            }
+            catch (Exception erro)
+            {
+                return View("../Home/Index");
+            }
         }
 
         public IActionResult CadastrarFornecedor(FornecedorViewModel fornecedor)

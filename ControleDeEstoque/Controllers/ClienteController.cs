@@ -29,7 +29,18 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult ListagemCliente()
         {
-            return View("ListagemCliente");
+            try
+            {
+                ClienteDAO dao = new ClienteDAO();
+                MainViewModel cliente = new MainViewModel();
+                cliente.clientes = dao.Listagem();
+
+                return View(cliente);
+            }
+            catch (Exception erro)
+            {
+                return View("../Home/Index");
+            }
         }
 
         public IActionResult CadastrarCliente(ClienteViewModel cliente)

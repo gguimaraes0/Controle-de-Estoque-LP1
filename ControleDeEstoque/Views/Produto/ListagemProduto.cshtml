@@ -1,1 +1,28 @@
-﻿lista de produto
+﻿@model MainViewModel
+
+<form>
+    <table class="table table-responsive">
+        <tr>
+            <th />
+            <th>Descrição </th>
+            <th>Tamanho </th>
+            <th>Cor </th>
+            <th>Quantidade</th>
+        </tr>
+
+        @foreach (ProdutoViewModel u in Model.produtos)
+        {
+            <tr>
+                <td>
+                    <a href="" class="btn btn-danger">Apagar</a>
+                    <a href="" class="btn btn-info">Editar</a>
+                </td>
+
+                <td>@u.Descricao</td>
+                <td>@u.Tamanho</td>
+                <td>@u.Cor</td>
+                <td>@u.Quantidade</td>
+            </tr>
+        }
+    </table>
+</form>

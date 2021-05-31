@@ -16,8 +16,23 @@ namespace ControleDeEstoque.Models
             compraVenda = new CompraVendaViewModel();
             produto = new ProdutoViewModel();
             fornecedor = new FornecedorViewModel();
+
+            usuarios = new List<UsuarioViewModel>();
+            clientes = new List<ClienteViewModel>();
+            compraVendas = new List<CompraVendaViewModel>();
+            produtos = new List<ProdutoViewModel>();
+            fornecedores = new List<FornecedorViewModel>();
         }
 
+        public List<ClienteViewModel> clientes;
+
+        public List<CompraVendaViewModel> compraVendas;
+
+        public List<ProdutoViewModel> produtos;
+
+        public List<FornecedorViewModel> fornecedores;
+
+        public List<UsuarioViewModel> usuarios;
         public UsuarioViewModel usuario { get; set; }
         public ClienteViewModel cliente { get; set; }
         public CompraVendaViewModel compraVenda { get; set; }

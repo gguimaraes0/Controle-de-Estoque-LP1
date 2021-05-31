@@ -33,7 +33,18 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult ListagemCompraVenda()
         {
-            return View("ListagemCompraVenda");
+            try
+            {
+                CompraVendaDAO dao = new CompraVendaDAO();
+                MainViewModel compraVenda = new MainViewModel();
+                compraVenda.compraVendas = dao.Listagem();
+
+                return View(compraVenda);
+            }
+            catch (Exception erro)
+            {
+                return View("../Home/Index");
+            }
         }
 
         public IActionResult CadastrarCompra(CompraVendaViewModel compra)

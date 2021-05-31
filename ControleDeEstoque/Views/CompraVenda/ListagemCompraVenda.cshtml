@@ -1,1 +1,26 @@
-﻿lista compravenda
+﻿@model MainViewModel
+
+<form>
+    <table class="table table-responsive">
+        <tr>
+            <th />
+            <th>Tipo </th>
+            <th>Quantidade </th>
+            <th>Data </th>
+        </tr>
+
+        @foreach (CompraVendaViewModel u in Model.compraVendas)
+        {
+            <tr>
+                <td>
+                    <a href="" class="btn btn-danger">Apagar</a>
+                    <a href="" class="btn btn-info">Editar</a>
+                </td>
+
+                <td>@u.Tipo</td>
+                <td>@u.Quantidade</td>
+                <td>@u.Data</td>
+            </tr>
+        }
+    </table>
+</form>

@@ -10,6 +10,17 @@ namespace ControleDeEstoque.DAO
 {
     public class CompraVendaDAO : PadraoDAO<CompraVendaViewModel>
     {
+        public List<CompraVendaViewModel> Listagem()
+        {
+            List<CompraVendaViewModel> lista = new List<CompraVendaViewModel>();
+            //string sql = "select * from Usuarios";
+            //DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            var tabela = HelperDAO.ExecutaProcSelect("spListagemCompras_Vendas", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
+
         protected override SqlParameter[] CriaParametros(CompraVendaViewModel compraVenda)
         {
             SqlParameter[] parametros = new SqlParameter[7];

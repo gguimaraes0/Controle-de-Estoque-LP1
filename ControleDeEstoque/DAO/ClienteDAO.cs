@@ -10,6 +10,33 @@ namespace ControleDeEstoque.DAO
 {
     public class ClienteDAO : PadraoDAO<ClienteViewModel>
     {
+        public List<ClienteViewModel> Listagem()
+        {
+            List<ClienteViewModel> lista = new List<ClienteViewModel>();
+            //string sql = "select * from Usuarios";
+            //DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            var tabela = HelperDAO.ExecutaProcSelect("spListagemCliente", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaCliente(registro));
+            return lista;
+        }
+
+        private ClienteViewModel MontaCliente(DataRow registro)
+        {
+            ClienteViewModel u = new ClienteViewModel();
+            u.CEP = registro["CEPCliente"].ToString();
+            u.CNPJ = registro["CNPJCliente"].ToString();
+            u.Codigo= registro["CodCliente"].ToString();
+            u.Complemento = registro["ComplementoCliente"].ToString();
+            u.CPF= registro["CPFCliente"].ToString();
+            u.DataNascimento = registro["Data_NascimentoCliente"].ToString();
+            u.Email= registro["EmailCliente"].ToString();
+            u.Nome = registro["NomeCliente"].ToString();
+            u.Numero= registro["NumeroCliente"].ToString();
+            u.Telefone= registro["TelefoneCliente"].ToString();
+
+            return u;
+        }
         protected override SqlParameter[] CriaParametros(ClienteViewModel cliente)
         {
             SqlParameter[] parametros = new SqlParameter[9];

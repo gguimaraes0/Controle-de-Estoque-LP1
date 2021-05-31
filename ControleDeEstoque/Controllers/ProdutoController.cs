@@ -42,8 +42,18 @@ namespace ControleDeEstoque.Controllers
 
         public IActionResult ListagemProduto()
         {
-            
-            return View("ListagemProduto");
+            try
+            {
+                ProdutoDAO dao = new ProdutoDAO();
+                MainViewModel usuario = new MainViewModel();
+                usuario.produtos = dao.Listagem();
+
+                return View(usuario);
+            }
+            catch (Exception erro)
+            {
+                return View("../Home/Index");
+            }
         }
 
         public IActionResult CadastrarProduto(ProdutoViewModel produto)

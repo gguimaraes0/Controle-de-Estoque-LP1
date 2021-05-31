@@ -13,9 +13,9 @@ namespace ControleDeEstoque.DAO
 {
     public class UsuarioDAO : PadraoDAO<UsuarioViewModel>
     {
-        public List<MainViewModel> Listagem()
+        public List<UsuarioViewModel> Listagem()
         {
-            List<MainViewModel> lista = new List<MainViewModel>();
+            List<UsuarioViewModel> lista = new List<UsuarioViewModel>();
             //string sql = "select * from Usuarios";
             //DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             var tabela = HelperDAO.ExecutaProcSelect("spListagemUsuario",null);
@@ -24,17 +24,17 @@ namespace ControleDeEstoque.DAO
             return lista;
         }
 
-        private MainViewModel MontaUsuario(DataRow registro)
+        private UsuarioViewModel MontaUsuario(DataRow registro)
         {
-            MainViewModel u = new MainViewModel();
-            u.usuario.Nome = registro["NomeUsuario"].ToString();
-            u.usuario.CEP = registro["CEPUsuario"].ToString();
-            u.usuario.Complemento = registro["ComplementoUsuario"].ToString();
-            u.usuario.Email = registro["EmailUsuario"].ToString();
-            u.usuario.Telefone = registro["TelefoneUsuario"].ToString();
-            u.usuario.Numero = registro["NumeroUsuario"].ToString();
-            u.usuario.Codigo = registro["CodUsuario"].ToString();
-            u.usuario.Senha = registro["SenhaUsuario"].ToString();
+            UsuarioViewModel u = new UsuarioViewModel();
+            u.Nome = registro["NomeUsuario"].ToString();
+            u.CEP = registro["CEPUsuario"].ToString();
+            u.Complemento = registro["ComplementoUsuario"].ToString();
+            u.Email = registro["EmailUsuario"].ToString();
+            u.Telefone = registro["TelefoneUsuario"].ToString();
+            u.Numero = registro["NumeroUsuario"].ToString();
+            u.Codigo = registro["CodUsuario"].ToString();
+            u.Senha = registro["SenhaUsuario"].ToString();
 
             return u;
         }

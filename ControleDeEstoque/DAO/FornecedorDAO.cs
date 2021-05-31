@@ -10,6 +10,31 @@ namespace ControleDeEstoque.DAO
 {
     public class FornecedorDAO : PadraoDAO<FornecedorViewModel>
     {
+        public List<FornecedorViewModel> Listagem()
+        {
+            List<FornecedorViewModel> lista = new List<FornecedorViewModel>();
+            //string sql = "select * from Usuarios";
+            //DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            var tabela = HelperDAO.ExecutaProcSelect("spListagemFornecedor", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaFornecedor(registro));
+            return lista;
+        }
+
+        private FornecedorViewModel MontaFornecedor(DataRow registro)
+        {
+            FornecedorViewModel u = new FornecedorViewModel();
+            u.Codigo = registro["CodFornecedor"].ToString();
+            u.CEP = registro["CEPFornecedor"].ToString();
+            u.CNPJ = registro["CNPJFornecedor"].ToString();
+            u.Complemento = registro["ComplementoFornecedor"].ToString();
+            u.Email = registro["EmailFornecedor"].ToString();
+            u.Nome = registro["NomeFornecedor"].ToString();
+            u.Numero = registro["NumeroFornecedor"].ToString();
+            u.Telefone = registro["TelefoneFornecedor"].ToString();
+
+            return u;
+        }
         protected override SqlParameter[] CriaParametros(FornecedorViewModel fornecedor)
         {
             SqlParameter[] parametros = new SqlParameter[7];

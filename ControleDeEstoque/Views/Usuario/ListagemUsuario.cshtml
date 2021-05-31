@@ -1,5 +1,4 @@
-﻿@model List<MainViewModel>
-
+﻿@model MainViewModel
 
 <form>
     <table class="table table-responsive">
@@ -11,17 +10,18 @@
             <th>Telefone</th>
         </tr>
 
-        @foreach (var u in Model)
+        @foreach (UsuarioViewModel u in Model.usuarios)
         {
             <tr>
                 <td>
                     <a href="" class="btn btn-danger">Apagar</a>
+                    <a href="" class="btn btn-info">Editar</a>
                 </td>
 
-                <td>@u.usuario.Nome</td>
-                <td>@u.usuario.Email</td>
-                <td>@u.usuario.CEP</td>
-                <td>@u.usuario.Telefone</td>
+                <td>@u.Nome</td>
+                <td>@u.Email</td>
+                <td>@u.CEP</td>
+                <td>@u.Telefone</td>
             </tr>
         }
     </table>

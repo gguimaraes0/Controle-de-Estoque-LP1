@@ -33,9 +33,10 @@ namespace ControleDeEstoque.Controllers
             try
             {
                 UsuarioDAO dao = new UsuarioDAO();
-                List<MainViewModel> lista = new List<MainViewModel>();
-                lista = dao.Listagem();
-                return View(lista);
+                MainViewModel usuario = new MainViewModel();
+                usuario.usuarios = dao.Listagem();
+                
+                return View(usuario);
             }
             catch (Exception erro)
             {

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace ControleDeEstoque.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : DefaultController
     {
 
         private readonly ILogger<UsuarioController> _logger;
@@ -44,23 +44,6 @@ namespace ControleDeEstoque.Controllers
             }
         }
 
-        public IActionResult CadastrarUsuario(UsuarioViewModel usuario)
-        {
-            try
-            {
-                // ValidaDados(curriculo, Operacao);
-
-                UsuarioDAO dao = new UsuarioDAO();
-
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                usuario.Codigo = usuario.Codigo;
-                dao.Insert(usuario);
-                return View("../Home/Index");
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
-        }    
+    
     }
 }

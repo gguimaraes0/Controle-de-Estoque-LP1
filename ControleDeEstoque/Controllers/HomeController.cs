@@ -28,10 +28,6 @@ namespace ControleDeEstoque.Controllers
             return View("../Home/Sobre");
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

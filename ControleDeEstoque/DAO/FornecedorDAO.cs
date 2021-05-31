@@ -43,7 +43,7 @@ namespace ControleDeEstoque.DAO
             parametros[2] = new SqlParameter("EmailFornecedor", fornecedor.Email);
             parametros[3] = new SqlParameter("TelefoneFornecedor", fornecedor.Telefone);
             parametros[4] = new SqlParameter("NumeroFornecedor", fornecedor.Numero);
-            parametros[5] = new SqlParameter("ComplementoFornecedor", fornecedor.Telefone);
+            parametros[5] = new SqlParameter("ComplementoFornecedor", fornecedor.Complemento);
             parametros[6] = new SqlParameter("CEPFornecedor", fornecedor.CEP);
             return parametros;
         }

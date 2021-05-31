@@ -1,0 +1,18 @@
+﻿body {
+}
+
+.cabecalho {
+    font-family: 'Bauhaus 93';
+    font-size: 20px;
+    color: #fe6703;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.lista {
+    font-family: Impact;
+    font-size: 16px;
+    color: white;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+}

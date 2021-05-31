@@ -1,16 +1,17 @@
 ﻿@model MainViewModel
+    <link rel="stylesheet" href="~/css/listagem.css" />
 
 <form>
     <table class="table table-responsive">
         <tr>
             <th />
-            <th>Nome </th>
-            <th>CNPJ </th>
-            <th>Telefone </th>
-            <th>Email</th>
-            <th>CEP</th>
-            <th>Numero</th>
-            <th>Complemento</th>
+            <th class="cabecalho">Nome </th>
+            <th class="cabecalho">CNPJ </th>
+            <th class="cabecalho">Telefone </th>
+            <th class="cabecalho">Email</th>
+            <th class="cabecalho">CEP</th>
+            <th class="cabecalho">Numero</th>
+            <th class="cabecalho">Complemento</th>
         </tr>
 
         @foreach (FornecedorViewModel u in Model.fornecedores)
@@ -21,13 +22,13 @@
                     <a href="" class="btn btn-info">Editar</a>
                 </td>
 
-                <td>@u.Nome</td>
-                <td>@u.CNPJ</td>
-                <td>@u.Telefone</td>
-                <td>@u.Email</td>
-                <td>@u.CEP</td>
-                <td>@u.Numero</td>
-                <td>@u.Complemento</td>
+                <td class="lista">@u.Nome</td>
+                <td class="lista">@u.CNPJ</td>
+                <td class="lista">@u.Telefone</td>
+                <td class="lista">@u.Email</td>
+                <td class="lista">@u.CEP</td>
+                <td class="lista">@u.Numero</td>
+                <td class="lista">@u.Complemento</td>
 
             </tr>
         }

@@ -1,110 +1,109 @@
 ﻿@model MainViewModel
+<link rel="stylesheet" href="~/css/cadastro.css" />
 
 <form asp-controller="Fornecedor" asp-action="CadastrarFornecedor">
 
     <div class="row">
-        <label>Cadastro de Fornecedor</label>
+        <label class="titulocadastro">Cadastro de Fornecedor</label>
     </div>
-
     <div class="row">
         <div class="col-2">
-            <label>Nome</label>
+            <label class="campos">Nome</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="fornecedor.Nome" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label>Email</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="fornecedor.Email" />
+            <input class="textbox" type="text" asp-for="fornecedor.Nome" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>CNPJ</label>
+            <label class="campos">Email</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="fornecedor.CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
+            <input class="textbox" type="text" asp-for="fornecedor.Email" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Telefone</label>
+            <label class="campos">CNPJ</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="fornecedor.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
+            <input class="textbox" type="text" asp-for="fornecedor.CNPJ" placeholder="99.999.999/9999-99" onkeydown="javascript: fMasc(this, mCNPJ);" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Número</label>
+            <label class="campos">Telefone</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="fornecedor.Numero" />
+            <input class="textbox" type="text" asp-for="fornecedor.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>CEP</label>
+            <label class="campos">Número</label>
         </div>
         <div class="col-3">
-            <input type="text" id="cep" onchange="buscaCEP()" asp-for="fornecedor.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+            <input class="textbox" type="text" asp-for="fornecedor.Numero" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Logradouro</label>
+            <label class="campos">CEP</label>
         </div>
         <div class="col-3">
-            <input type="text" id="logradouro" />
+            <input class="textbox" type="text" id="cep" onchange="buscaCEP()" asp-for="fornecedor.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <label class="campos">Logradouro</label>
+        </div>
+        <div class="col-3">
+            <input class="textbox" type="text" id="logradouro" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Complemento</label>
+            <label class="campos">Complemento</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="fornecedor.Complemento" />
+            <input class="textbox" type="text" asp-for="fornecedor.Complemento" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Bairro</label>
+            <label class="campos">Bairro</label>
         </div>
         <div class="col-3">
-            <input type="text" id="bairro" />
+            <input class="textbox" type="text" id="bairro" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Cidade</label>
+            <label class="campos">Cidade</label>
         </div>
         <div class="col-3">
-            <input type="text" id="cidade" />
+            <input class="textbox" type="text" id="cidade" />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Estado</label>
+            <label class="campos">Estado</label>
         </div>
         <div class="col-3">
-            <input type="text" id="estado" />
+            <input class="textbox" type="text" id="estado" />
         </div>
     </div>
 
-    <input type="submit" value="Cadastrar" />
 
+    <input class="botao" type="submit" value="Cadastrar" />
 </form>

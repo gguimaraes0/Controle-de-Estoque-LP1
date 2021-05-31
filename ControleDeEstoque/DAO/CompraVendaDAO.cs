@@ -29,7 +29,7 @@ namespace ControleDeEstoque.DAO
             parametros[2] = new SqlParameter("CodUsuario", compraVenda.CodigoUsuario);
             parametros[3] = new SqlParameter("CodFornecedor", compraVenda.CodigoFornecedor);
             parametros[4] = new SqlParameter("Quantidade", compraVenda.Quantidade);
-            parametros[5] = new SqlParameter("CodProdutos", compraVenda.CodigoProduto);
+            parametros[5] = new SqlParameter("CodProduto", compraVenda.CodigoProduto);
             parametros[6] = new SqlParameter("Data", compraVenda.Data);
             return parametros;
         }
@@ -42,7 +42,7 @@ namespace ControleDeEstoque.DAO
             U.CodigoUsuario = registro["CodUsuario"].ToString();
             U.CodigoFornecedor = registro["CodFornecedor"].ToString();
             U.Quantidade = registro["Quantidade"].ToString();
-            U.CodigoProduto = registro["CodProdutos"].ToString();
+            U.CodigoProduto = registro["CodProduto"].ToString();
             U.Data = registro["Data"].ToString();
 
             return U;

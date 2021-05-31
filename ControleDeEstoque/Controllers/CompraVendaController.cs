@@ -50,7 +50,7 @@ namespace ControleDeEstoque.Controllers
             }
         }
 
-        public IActionResult CadastrarCompra(CompraVendaViewModel compra)
+        public IActionResult CadastrarCompra(MainViewModel compra)
         {
             try
             {
@@ -59,10 +59,11 @@ namespace ControleDeEstoque.Controllers
                 CompraVendaDAO dao = new CompraVendaDAO();
 
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                compra.Tipo = "Compra";
-                compra.Data = DateTime.Now.ToString();
+                compra.compraVenda.Tipo = "Compra";
+
                 PreparaListaFornecedorParaCombo();
-                dao.Insert(compra);
+
+                dao.Insert(compra.compraVenda);
 
                 return View("../Home/Index");
             }
@@ -71,17 +72,17 @@ namespace ControleDeEstoque.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public IActionResult CadastrarVenda(CompraVendaViewModel venda)
+        public IActionResult CadastrarVenda(MainViewModel venda)
         {
             try
             {
                 CompraVendaDAO dao = new CompraVendaDAO();
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                venda.Tipo = "Venda";
-                venda.Data = DateTime.Now.ToString();
+                venda.compraVenda.Tipo = "Venda";
+
                 PreparaListaFornecedorParaCombo();
 
-                dao.Insert(venda);
+                dao.Insert(venda.compraVenda);
                 return View("../Home/Index");
             }
             catch (Exception erro)

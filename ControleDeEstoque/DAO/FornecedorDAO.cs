@@ -95,6 +95,7 @@ namespace ControleDeEstoque.DAO
         {
             Tabela = "Fornecedores";
             NomeSpListagem = "spListagemFornecedores";
+            CodName = "CodFornecedor";
         }
         public List<FornecedorViewModel> ListaFornecedor()
         {

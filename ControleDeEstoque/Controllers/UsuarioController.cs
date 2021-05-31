@@ -61,6 +61,20 @@ namespace ControleDeEstoque.Controllers
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
-        }    
+        }
+
+        public IActionResult Delete(string pk)
+        {
+            try
+            {
+                UsuarioDAO dao = new UsuarioDAO();
+                dao.Delete(int.Parse(pk));
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return RedirectToAction("index");
+            }
+        }
     }
 }

@@ -76,6 +76,7 @@ namespace ControleDeEstoque.DAO
         {
             Tabela = "Usuarios";
             NomeSpListagem = "spListagemUsuarios";
+            CodName = "CodUsuario";
         }
 
         public UsuarioViewModel ValidaLogin(UsuarioViewModel usuario)

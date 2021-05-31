@@ -31,6 +31,20 @@ namespace ControleDeEstoque.Controllers
             _logger = logger;
         }
 
+        public IActionResult Delete(string pk)
+        {
+            try
+            {
+                ProdutoDAO dao = new ProdutoDAO();
+                dao.Delete(int.Parse(pk));
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return RedirectToAction("index");
+            }
+        }
+
         public IActionResult CadastroProduto()
         {
             MainViewModel mainViewModel = new MainViewModel();

@@ -61,7 +61,18 @@ namespace ControleDeEstoque.Controllers
             }
         }
 
-        
-
+        public IActionResult Delete(string pk)
+        {
+            try
+            {
+                FornecedorDAO dao = new FornecedorDAO();
+                dao.Delete(int.Parse(pk));
+                return View("../Home/Index");
+            }
+            catch (Exception erro)
+            {
+                return RedirectToAction("index");
+            }
+        }
     }
 }

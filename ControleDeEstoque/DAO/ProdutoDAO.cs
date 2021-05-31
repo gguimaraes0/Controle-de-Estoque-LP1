@@ -68,6 +68,7 @@ namespace ControleDeEstoque.DAO
         {
             Tabela = "Produtos";
             NomeSpListagem = "spListagemProdutos";
+            CodName = "CodProduto";
         }
     }
 }

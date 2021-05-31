@@ -1,22 +1,29 @@
 ﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Cadastro de Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/cadastro.css" />
 
 <form asp-controller="CompraVenda" asp-action="CadastrarVenda">
     <div class="row">
-        <label>Registro de Venda</label>
+        <label class="titulocadastro">Registro de Venda</label>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Codigo do Fornecedor</label>
+            <label for="fornecedor" class="campos">Codigo Fornecedor</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="compraVenda.CodigoFornecedor" />
+            <select asp-for="compraVenda.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
+            <span asp-validation-for="compraVenda.CodigoFornecedor" class="text-danger"></span>
+            <br />
         </div>
     </div>
 
     <div class="row">
         <div class="col-2">
-            <label>Codigo do Cliente</label>
+            <label class="campos">Codigo do Cliente</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.CodigoCliente" />
@@ -25,7 +32,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Codigo do usuário</label>
+            <label class="campos">Codigo do usuário</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.CodigoUsuario" />
@@ -34,7 +41,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Codigo do Produto</label>
+            <label class="campos">Codigo do Produto</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.CodigoProduto" />
@@ -43,7 +50,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Quantidade</label>
+            <label class="campos">Quantidade</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.Quantidade" />
@@ -52,7 +59,7 @@
 
     <div class="row">
         <div class="col-2">
-            <label>Data da Venda</label>
+            <label class="campos">Data da Venda</label>
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />

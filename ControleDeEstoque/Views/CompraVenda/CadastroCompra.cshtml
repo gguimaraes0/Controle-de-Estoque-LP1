@@ -1,64 +1,69 @@
 ﻿@model MainViewModel
 
-<form asp-controller="CompraVenda" asp-action="CadastrarCompra">
+    <link rel="stylesheet" href="~/css/cadastro.css" />
 
-    <div class="row">
-        <label>Registro de Compra</label>
-    </div>
+    <form asp-controller="CompraVenda" asp-action="CadastrarCompra">
 
-    <div class="row">
-        <div class="col-2">
-            <label>Codigo do Fornecedor</label>
+        <div class="row">
+            <label class="titulocadastro">Registro de Compra</label>
         </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.CodigoFornecedor" />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-2">
-            <label>Codigo do Cliente</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.CodigoCliente" />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-2">
-            <label>Codigo do usuário</label>
+        <div class="row">
+            <div class="col-2">
+                <label for="fornecedor" class="campos">Codigo Fornecedor</label>
+            </div>
+            <div class="col-3">
+                <select asp-for="compraVenda.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoFornecedor" class="text-danger"></span>
+                <br />
+            </div>
         </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.CodigoUsuario" />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-2">
-            <label>Codigo do Produto</label>
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Codigo do Cliente</labelclass="campos">
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="compraVenda.CodigoCliente" />
+            </div>
         </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.CodigoProduto" />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-2">
-            <label>Quantidade</label>
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Codigo do usuário</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="compraVenda.CodigoUsuario" />
+            </div>
         </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.Quantidade" />
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-2">
-            <label>Data da Compra</label>
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Codigo do Produto</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="compraVenda.CodigoProduto" />
+            </div>
         </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
-        </div>
-    </div>
-    <input type="submit" value="Cadastrar" />
 
-</form>
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Quantidade</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="compraVenda.Quantidade" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Data da Compra</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
+            </div>
+        </div>
+        <input type="submit" value="Cadastrar" />
+
+    </form>

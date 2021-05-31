@@ -1,6 +1,7 @@
 ﻿using ControleDeEstoque.DAO;
 using ControleDeEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,14 @@ namespace ControleDeEstoque.Controllers
         public IActionResult CadastroCompra()
         {
             MainViewModel mainViewModel = new MainViewModel();
+            PreparaListaFornecedorParaCombo();
             return View("CadastroCompra", mainViewModel);
         }
 
         public IActionResult CadastroVenda()
         {
             MainViewModel mainViewModel = new MainViewModel();
+            PreparaListaFornecedorParaCombo();
             return View("CadastroVenda", mainViewModel);
         }
 
@@ -47,6 +50,7 @@ namespace ControleDeEstoque.Controllers
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                 compra.Tipo = "Compra";
                 compra.Data = DateTime.Now.ToString();
+                PreparaListaFornecedorParaCombo();
                 dao.Insert(compra);
 
                 return View("../Home/Index");
@@ -64,6 +68,7 @@ namespace ControleDeEstoque.Controllers
                 //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                 venda.Tipo = "Venda";
                 venda.Data = DateTime.Now.ToString();
+                PreparaListaFornecedorParaCombo();
 
                 dao.Insert(venda);
                 return View("../Home/Index");
@@ -72,6 +77,21 @@ namespace ControleDeEstoque.Controllers
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
+        }
+
+        private void PreparaListaFornecedorParaCombo()
+        {
+            FornecedorDAO FornecedorDao = new FornecedorDAO();
+            var Fornecedores = FornecedorDao.ListaFornecedor();
+            List<SelectListItem> listaFornecedor = new List<SelectListItem>();
+
+            listaFornecedor.Add(new SelectListItem("Selecione um Fornecedor...", "0"));
+            foreach (var Fornecedor in Fornecedores)
+            {
+                SelectListItem item = new SelectListItem(Fornecedor.Nome, Fornecedor.Codigo.ToString());
+                listaFornecedor.Add(item);
+            }
+            ViewBag.Fornecedor = listaFornecedor;
         }
     }
 }

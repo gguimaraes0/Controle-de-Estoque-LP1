@@ -36,7 +36,7 @@ namespace ControleDeEstoque.DAO
                 new SqlParameter("id", id),
                 new SqlParameter("tabela", Tabela)
             };
-            HelperDAO.ExecutaProc("sp_DeleteDado", p);
+            HelperDAO.ExecutaProc("spDelete", p);
         }
         public virtual T Consulta(int id)
         {

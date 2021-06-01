@@ -2,7 +2,7 @@
     font-family:'Bauhaus 93';
     font-size: 40px;
     color: white;
-    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 }
 
@@ -28,3 +28,4 @@
     font-size: 23px;
     border-color: #fe6703;
 }
+

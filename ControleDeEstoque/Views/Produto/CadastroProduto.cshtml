@@ -6,75 +6,77 @@
 <link rel="stylesheet" href="~/css/cadastro.css" />
 
 <form asp-controller="Produto" asp-action="CadastrarProduto" enctype="multipart/form-data">
-    <div style="opacity:0.75; background-color: white">
+    <div style="opacity:0.75; background-color: white; height:600PX">
+        <div style="margin-left:100px">
 
-        <div class="row">
-            <label class="titulocadastro">Cadastro de Produto</label>
+            <div class="row">
+                <label class="titulocadastro">Cadastro de Produto</label>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label for="tipo" class="campos">Tipo</label>
+                </div>
+                <div class="col-6">
+                    <select asp-for="produto.Tipo" asp-items="ViewBag.TipoProduto" class="form-control"> </select>
+                    <span asp-validation-for="produto.Tipo" class="text-danger"></span>
+                    <br />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label for="Cor" class="campos">Cor</label>
+                </div>
+                <div class="col-6">
+                    <select asp-for="produto.Cor" asp-items="ViewBag.CorProduto" class="form-control"> </select>
+                    <span asp-validation-for="produto.Cor" class="text-danger"></span>
+                    <br />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label class="campos">Tamanho</label>
+                </div>
+                <div class="col-6">
+                    <input type="text" asp-for="produto.Tamanho" />
+                    <span asp-validation-for="produto.Tamanho" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label class="campos">Descrição</label>
+                </div>
+                <div class="col-6">
+                    <input type="text" asp-for="produto.Descricao" />
+                    <span asp-validation-for="produto.Descricao" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label class="campos">Quantidade</label>
+                </div>
+                <div class="col-6">
+                    <input type="number" asp-for="produto.Quantidade" />
+                    <span asp-validation-for="produto.Quantidade" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label for="fornecedor" class="campos">Fornecedor</label>
+                </div>
+                <div class="col-6">
+                    <select asp-for="produto.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
+                    <span asp-validation-for="produto.CodigoFornecedor" class="text-danger"></span>
+                    <br />
+                </div>
+            </div>
+
+            <input class="botao" type="submit" value="Cadastrar" />
         </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label for="tipo" class="campos">Tipo</label>
-            </div>
-            <div class="col-3">
-                <select asp-for="produto.Tipo" asp-items="ViewBag.TipoProduto" class="form-control"> </select>
-                <span asp-validation-for="produto.Tipo" class="text-danger"></span>
-                <br />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label for="Cor" class="campos">Cor</label>
-            </div>
-            <div class="col-3">
-                <select asp-for="produto.Cor" asp-items="ViewBag.CorProduto" class="form-control"> </select>
-                <span asp-validation-for="produto.Cor" class="text-danger"></span>
-                <br />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label class="campos">Tamanho</label>
-            </div>
-            <div class="col-3">
-                <input type="text" asp-for="produto.Tamanho" />
-                <span asp-validation-for="produto.Tamanho" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label class="campos">Descrição</label>
-            </div>
-            <div class="col-3">
-                <input type="text" asp-for="produto.Descricao" />
-                <span asp-validation-for="produto.Descricao" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label class="campos">Quantidade</label>
-            </div>
-            <div class="col-3">
-                <input type="number" asp-for="produto.Quantidade" />
-                <span asp-validation-for="produto.Quantidade" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2">
-                <label for="fornecedor" class="campos">Fornecedor</label>
-            </div>
-            <div class="col-3">
-                <select asp-for="produto.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
-                <span asp-validation-for="produto.CodigoFornecedor" class="text-danger"></span>
-                <br />
-            </div>
-        </div>
-
-        <input class="botao" type="submit" value="Cadastrar" />
     </div>
 </form>

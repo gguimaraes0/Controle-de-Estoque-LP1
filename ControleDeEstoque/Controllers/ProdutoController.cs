@@ -74,6 +74,9 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.produto = produto;
+
                 string Operacao = ViewBag.Operacao = "I";
 
                 ValidaDados(produto);
@@ -84,7 +87,7 @@ namespace ControleDeEstoque.Controllers
                     PreparaListaFornecedorParaCombo();
                     PreparaListaCorParaCombo();
                     ViewBag.Operacao = Operacao;
-                    return View("../Produto/CadastroProduto");
+                    return View("../Produto/CadastroProduto", mainViewModel);
                 }
                 else
                 {

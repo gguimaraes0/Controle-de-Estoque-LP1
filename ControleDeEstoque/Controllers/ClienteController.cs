@@ -47,12 +47,15 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
+
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.cliente = cliente;
                 string Operacao = ViewBag.Operacao = "I";
                 ValidaDados(cliente);
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
-                    return View("../Cliente/CadastroCliente");
+                    return View("../Cliente/CadastroCliente", mainViewModel);
                 }
                 else
                 {

@@ -47,6 +47,8 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.fornecedor = fornecedor;
                 if (fornecedor == null)
                     fornecedor.IsEmpty = true;
 
@@ -55,7 +57,7 @@ namespace ControleDeEstoque.Controllers
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
-                    return View("../Fornecedor/CadastroFornecedor");
+                    return View("../Fornecedor/CadastroFornecedor", mainViewModel);
                 }
                 else
                 {

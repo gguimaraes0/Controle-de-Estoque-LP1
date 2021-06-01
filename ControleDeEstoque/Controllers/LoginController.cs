@@ -57,15 +57,14 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
-                //if (fornecedor == null)
-                //    fornecedor.IsEmpty = true;
-                // ValidaDados(curriculo, Operacao);
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.usuario = usuario;
                 string Operacao = ViewBag.Operacao = "I";
                 ValidaDados(usuario);
-                if(ModelState.IsValid == false)
+                if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
-                    return View("../Usuario/CadastroUsuario");
+                    return View("../Usuario/CadastroUsuario", mainViewModel);
                 }
                 else
                 {

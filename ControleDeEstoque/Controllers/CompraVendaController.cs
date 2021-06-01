@@ -60,12 +60,13 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
+
                 string Operacao = ViewBag.Operacao = "I";
                 ValidaDados(compra.compraVenda);
                 if (ModelState.IsValid == false)
                 {
                     PreparaListaFornecedorParaCombo();
-                    return View("../CompraVenda/CadastroCompra");
+                    return View("../CompraVenda/CadastroCompra", compra);
                 }
                 else
                 {
@@ -100,7 +101,7 @@ namespace ControleDeEstoque.Controllers
                 if (ModelState.IsValid == false)
                 {
                     PreparaListaFornecedorParaCombo();
-                    return View("../CompraVenda/CadastroVenda");
+                    return View("../CompraVenda/CadastroVenda", venda);
                 }
                 else
                 {

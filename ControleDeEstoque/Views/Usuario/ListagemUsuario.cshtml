@@ -1,29 +1,31 @@
 ﻿@model MainViewModel
     <link rel="stylesheet" href="~/css/listagem.css" />
 
-<form>
-    <table class="table table-responsive">
-        <tr>
-            <th />
-            <th class="cabecalho">Nome </th>
-            <th class="cabecalho">Email </th>
-            <th class="cabecalho">CEP </th>
-            <th class="cabecalho">Telefone</th>
-        </tr>
+    <form>
+        <div style="opacity:0.75; background-color: white">
+            <table class="table table-responsive">
+                <tr>
+                    <th />
+                    <th class="cabecalho">Nome </th>
+                    <th class="cabecalho">Email </th>
+                    <th class="cabecalho">CEP </th>
+                    <th class="cabecalho">Telefone</th>
+                </tr>
 
-        @foreach (UsuarioViewModel u in Model.usuarios)
-        {
-            <tr>
-                <td>
-                    <a href="/Usuario/Delete?pk=@u.Codigo"  class="btn btn-danger">Apagar</a>
-                    <a href="" class="btn btn-info">Editar</a>
-                </td>
+                @foreach (UsuarioViewModel u in Model.usuarios)
+                {
+                    <tr>
+                        <td>
+                            <a href="/Usuario/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
+                            <a href="" class="btn btn-info">Editar</a>
+                        </td>
 
-                <td class="lista">@u.Nome</td>
-                <td class="lista">@u.Email</td>
-                <td class="lista">@u.CEP</td>
-                <td class="lista">@u.Telefone</td>
-            </tr>
-        }
-    </table>
-</form>
+                        <td class="lista">@u.Nome</td>
+                        <td class="lista">@u.Email</td>
+                        <td class="lista">@u.CEP</td>
+                        <td class="lista">@u.Telefone</td>
+                    </tr>
+                }
+            </table>
+            </div>
+    </form>

@@ -7,44 +7,46 @@
 
 
 <form>
-    <table class="table table-responsive">
-        <tr>
-            <th />
-            <th class="cabecalho">Nome </th>
-            <th class="cabecalho">CPF/CNPJ </th>
-            <th class="cabecalho">Email </th>
-            <th class="cabecalho">Telefone</th>
-            <th class="cabecalho">Data de Nascimento</th>
-            <th class="cabecalho">Cep</th>
-            <th class="cabecalho">Número</th>
-            <th class="cabecalho">Complemento</th>
-        </tr>
-
-        @foreach (ClienteViewModel u in Model.clientes)
-        {
+    <div style="opacity:0.75; background-color: white">
+        <table class="table table-responsive">
             <tr>
-                <td>
-                    <a href="/Cliente/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
-                    <a class="btn btn-info">Editar</a>
-                </td>
-
-                <td>@u.Nome</td>
-                @if (u.CNPJ != "")
-                {
-                    <td>@u.CNPJ</td>
-                }
-                else
-                {
-                    <td>@u.CPF</td>
-                }
-
-                <td class="lista">@u.Email</td>
-                <td class="lista">@u.Telefone</td>
-                <td class="lista">@u.DataNascimento</td>
-                <td class="lista">@u.CEP</td>
-                <td class="lista">@u.Numero</td>
-                <td class="lista">@u.Complemento</td>
+                <th />
+                <th class="cabecalho">Nome </th>
+                <th class="cabecalho">CPF/CNPJ </th>
+                <th class="cabecalho">Email </th>
+                <th class="cabecalho">Telefone</th>
+                <th class="cabecalho">Data de Nascimento</th>
+                <th class="cabecalho">Cep</th>
+                <th class="cabecalho">Número</th>
+                <th class="cabecalho">Complemento</th>
             </tr>
-        }
-    </table>
+
+            @foreach (ClienteViewModel u in Model.clientes)
+            {
+                <tr>
+                    <td>
+                        <a href="/Cliente/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
+                        <a class="btn btn-info">Editar</a>
+                    </td>
+
+                    <td class="lista">@u.Nome</td>
+                    @if (u.CNPJ != "")
+                    {
+                        <td class="lista">@u.CNPJ</td>
+                    }
+                    else
+                    {
+                        <td class="lista">@u.CPF</td>
+                    }
+
+                    <td class="lista">@u.Email</td>
+                    <td class="lista">@u.Telefone</td>
+                    <td class="lista">@u.DataNascimento</td>
+                    <td class="lista">@u.CEP</td>
+                    <td class="lista">@u.Numero</td>
+                    <td class="lista">@u.Complemento</td>
+                </tr>
+            }
+        </table>
+        </div>
 </form>

@@ -70,5 +70,36 @@ namespace ControleDeEstoque.DAO
             NomeSpListagem = "spListagemProdutos";
             CodName = "CodProduto";
         }
+
+        private ProdutoViewModel MontaProdutoSelect(DataRow registro)
+        {
+            ProdutoViewModel f = new ProdutoViewModel()
+            {
+                Codigo = registro["CodProduto"].ToString(),
+
+                Descricao = registro["DescricaoProduto"].ToString(),
+
+                Tipo = registro["TipoProduto"].ToString(),
+
+                Cor = registro["CorProduto"].ToString(),
+
+                Tamanho = registro["TamanhoProduto"].ToString(),
+
+                Quantidade = registro["QuantidadeDisponivelProduto"].ToString(),
+
+                CodigoFornecedor = registro["CodFornecedor"].ToString()
+            };
+            return f;
+        }
+
+        public List<ProdutoViewModel> ListaProduto()
+        {
+
+            List<ProdutoViewModel> lista = new List<ProdutoViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemProduto", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaProdutoSelect(registro));
+            return lista;
+        }
     }
 }

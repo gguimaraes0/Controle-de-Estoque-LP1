@@ -1,36 +1,38 @@
 ﻿@model MainViewModel
     <link rel="stylesheet" href="~/css/listagem.css" />
 
-<form>
-    <table class="table table-responsive">
-        <tr>
-            <th />
-            <th class="cabecalho">Nome </th>
-            <th class="cabecalho">CNPJ </th>
-            <th class="cabecalho">Telefone </th>
-            <th class="cabecalho">Email</th>
-            <th class="cabecalho">CEP</th>
-            <th class="cabecalho">Numero</th>
-            <th class="cabecalho">Complemento</th>
-        </tr>
+    <form>
+        <div style="opacity:0.75; background-color: white">
+            <table class="table table-responsive">
+                <tr>
+                    <th />
+                    <th class="cabecalho">Nome </th>
+                    <th class="cabecalho">CNPJ </th>
+                    <th class="cabecalho">Telefone </th>
+                    <th class="cabecalho">Email</th>
+                    <th class="cabecalho">CEP</th>
+                    <th class="cabecalho">Numero</th>
+                    <th class="cabecalho">Complemento</th>
+                </tr>
 
-        @foreach (FornecedorViewModel u in Model.fornecedores)
-        {
-            <tr>
-                <td>
-                    <a href="/Fornecedor/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
-                    <a href="" class="btn btn-info">Editar</a>
-                </td>
+                @foreach (FornecedorViewModel u in Model.fornecedores)
+                {
+                    <tr>
+                        <td>
+                            <a href="/Fornecedor/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
+                            <a href="" class="btn btn-info">Editar</a>
+                        </td>
 
-                <td class="lista">@u.Nome</td>
-                <td class="lista">@u.CNPJ</td>
-                <td class="lista">@u.Telefone</td>
-                <td class="lista">@u.Email</td>
-                <td class="lista">@u.CEP</td>
-                <td class="lista">@u.Numero</td>
-                <td class="lista">@u.Complemento</td>
+                        <td class="lista">@u.Nome</td>
+                        <td class="lista">@u.CNPJ</td>
+                        <td class="lista">@u.Telefone</td>
+                        <td class="lista">@u.Email</td>
+                        <td class="lista">@u.CEP</td>
+                        <td class="lista">@u.Numero</td>
+                        <td class="lista">@u.Complemento</td>
 
-            </tr>
-        }
-    </table>
-</form>
+                    </tr>
+                }
+            </table>
+            </div>
+    </form>

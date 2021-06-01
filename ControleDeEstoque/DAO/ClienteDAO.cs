@@ -48,7 +48,7 @@ namespace ControleDeEstoque.DAO
             parametros[4] = new SqlParameter("ComplementoCliente", cliente.Complemento);
             parametros[5] = new SqlParameter("TelefoneCliente", cliente.Telefone);
             parametros[6] = new SqlParameter("CEPCliente", cliente.CEP);
-            if (cliente.CPF != null)
+            if (cliente.CPF != "")
             {
                 parametros[7] = new SqlParameter("CPFCliente", cliente.CPF);
                 parametros[8] = new SqlParameter("CNPJCliente", "");

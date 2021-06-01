@@ -47,19 +47,56 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
-                // ValidaDados(curriculo, Operacao);
+                string Operacao = ViewBag.Operacao = "I";
+                ValidaDados(cliente);
+                if (ModelState.IsValid == false)
+                {
+                    ViewBag.Operacao = Operacao;
+                    return View("../Cliente/CadastroCliente");
+                }
+                else
+                {
+                    ClienteDAO dao = new ClienteDAO();
 
-                ClienteDAO dao = new ClienteDAO();
+                    //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
 
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-
-                dao.Insert(cliente);
-                return View("../Home/Index");
+                    dao.Insert(cliente);
+                    return View("../Home/Index");
+                }
             }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
+        }
+        private void ValidaDados(ClienteViewModel cliente)
+        {
+            ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net
+            ClienteDAO dao = new ClienteDAO();
+            if (string.IsNullOrEmpty(cliente.CEP))
+                ModelState.AddModelError("cliente.CEP", "Obrigatório informar um CEP.");
+
+            if (string.IsNullOrEmpty(cliente.Complemento))
+                ModelState.AddModelError("cliente.Complemento", "Obrigatório informar o Complemento.");
+
+            if (string.IsNullOrEmpty(cliente.Email))
+                ModelState.AddModelError("cliente.Email", "Obrigatório informar o Email.");
+
+            if (string.IsNullOrEmpty(cliente.Nome))
+                ModelState.AddModelError("cliente.Nome", "Obrigatório informar o Nome.");
+
+            if (string.IsNullOrEmpty(cliente.Numero) || int.Parse(cliente.Numero) < 0)
+                ModelState.AddModelError("cliente.Numero", "Obrigatório informar um número válido.");
+
+            if (string.IsNullOrEmpty(cliente.Telefone))
+                ModelState.AddModelError("cliente.Telefone", "Obrigatório informar o Telefone.");
+
+            if (string.IsNullOrEmpty(cliente.DataNascimento))
+                ModelState.AddModelError("cliente.DataNascimento", "Obrigatório informar a Data Nascimento.");
+
+            if (string.IsNullOrEmpty(cliente.CNPJ) && string.IsNullOrEmpty(cliente.CPF))
+                ModelState.AddModelError("cliente.CNPJ", "Obrigatório informar CPF/CNPJ.");
+
         }
 
         public IActionResult Delete(string pk)

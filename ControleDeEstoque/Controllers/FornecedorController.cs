@@ -59,7 +59,6 @@ namespace ControleDeEstoque.Controllers
                 }
                 else
                 {
-
                     //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                     FornecedorDAO dao = new FornecedorDAO();
                     dao.Insert(fornecedor);

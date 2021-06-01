@@ -93,5 +93,42 @@ namespace ControleDeEstoque.DAO
             NomeSpListagem = "spListagemClientes";
             CodName = "CodCliente";
         }
+
+        private ClienteViewModel MontaClienteSelect(DataRow registro)
+        {
+            ClienteViewModel f = new ClienteViewModel()
+            {
+                Codigo = registro["CodCliente"].ToString(),
+
+                CNPJ = registro["CNPJCliente"].ToString(),
+
+                CPF = registro["CPFCliente"].ToString(),
+
+                Nome = registro["NomeCliente"].ToString(),
+
+                Email = registro["EmailCliente"].ToString(),
+
+                Telefone = registro["TelefoneCliente"].ToString(),
+
+                Numero = registro["NumeroCliente"].ToString(),
+
+                Complemento = registro["ComplementoCliente"].ToString(),
+
+                DataNascimento = registro["Data_NascimentoCliente"].ToString(),
+
+                CEP = registro["CEPCliente"].ToString()
+            };
+            return f;
+        }
+
+        public List<ClienteViewModel> ListaCliente()
+        {
+
+            List<ClienteViewModel> lista = new List<ClienteViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemCliente", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaClienteSelect(registro));
+            return lista;
+        }
     }
 }

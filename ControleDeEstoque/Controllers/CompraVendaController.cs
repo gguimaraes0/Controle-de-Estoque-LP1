@@ -24,6 +24,9 @@ namespace ControleDeEstoque.Controllers
         {
             MainViewModel mainViewModel = new MainViewModel();
             PreparaListaFornecedorParaCombo();
+            PreparaListaClienteParaCombo();
+            PreparaListaProdutoParaCombo();
+            PreparaListaUsuarioParaCombo();
             return View("CadastroCompra", mainViewModel);
         }
 
@@ -31,6 +34,9 @@ namespace ControleDeEstoque.Controllers
         {
             MainViewModel mainViewModel = new MainViewModel();
             PreparaListaFornecedorParaCombo();
+            PreparaListaClienteParaCombo();
+            PreparaListaProdutoParaCombo();
+            PreparaListaUsuarioParaCombo();
             return View("CadastroVenda", mainViewModel);
         }
 
@@ -62,6 +68,9 @@ namespace ControleDeEstoque.Controllers
                 compra.compraVenda.Tipo = "Compra";
 
                 PreparaListaFornecedorParaCombo();
+                PreparaListaClienteParaCombo();
+                PreparaListaUsuarioParaCombo();
+                PreparaListaProdutoParaCombo();
 
                 dao.Insert(compra.compraVenda);
 
@@ -81,6 +90,9 @@ namespace ControleDeEstoque.Controllers
                 venda.compraVenda.Tipo = "Venda";
 
                 PreparaListaFornecedorParaCombo();
+                PreparaListaClienteParaCombo();
+                PreparaListaUsuarioParaCombo();
+                PreparaListaProdutoParaCombo();
 
                 dao.Insert(venda.compraVenda);
                 return View("../Home/Index");
@@ -104,6 +116,50 @@ namespace ControleDeEstoque.Controllers
                 listaFornecedor.Add(item);
             }
             ViewBag.Fornecedor = listaFornecedor;
+        }
+
+        private void PreparaListaClienteParaCombo()
+        {
+            ClienteDAO ClienteDao = new ClienteDAO();
+            var Clientes = ClienteDao.ListaCliente();
+            List<SelectListItem> listaCliente = new List<SelectListItem>();
+
+            listaCliente.Add(new SelectListItem("Selecione um Cliente...", "0"));
+            foreach (var Cliente in Clientes)
+            {
+                SelectListItem item = new SelectListItem(Cliente.Nome, Cliente.Codigo.ToString());
+                listaCliente.Add(item);
+            }
+            ViewBag.Cliente = listaCliente;
+        }
+        private void PreparaListaUsuarioParaCombo()
+        {
+            UsuarioDAO UsuarioDao = new UsuarioDAO();
+            var Usuarios = UsuarioDao.ListaUsuario();
+            List<SelectListItem> listaUsuario = new List<SelectListItem>();
+
+            listaUsuario.Add(new SelectListItem("Selecione o Usuario...", "0"));
+            foreach (var Usuario in Usuarios)
+            {
+                SelectListItem item = new SelectListItem (Usuario.Nome, Usuario.Codigo.ToString());
+                listaUsuario.Add(item);
+            }
+            ViewBag.Usuario = listaUsuario;
+        }
+
+        private void PreparaListaProdutoParaCombo()
+        {
+            ProdutoDAO ProdutoDao = new ProdutoDAO();
+            var Produtos = ProdutoDao.ListaProduto();
+            List<SelectListItem> listaProduto = new List<SelectListItem>();
+
+            listaProduto.Add(new SelectListItem("Selecione um Produto...", "0"));
+            foreach (var Produto in Produtos)
+            {
+                SelectListItem item = new SelectListItem(Produto.Descricao, Produto.Codigo.ToString());
+                listaProduto.Add(item);
+            }
+            ViewBag.Produto = listaProduto;
         }
     }
 }

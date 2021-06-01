@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col-2">
-                <label for="fornecedor" class="campos">Codigo Fornecedor</label>
+                <label for="fornecedor" class="campos">Fornecedor</label>
             </div>
             <div class="col-3">
                 <select asp-for="compraVenda.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
@@ -20,33 +20,39 @@
             </div>
         </div>
 
+
         <div class="row">
             <div class="col-2">
-                <label class="campos">Codigo do Cliente</labelclass="campos">
+                <label for="cliente" class="campos">Cliente</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="compraVenda.CodigoCliente" />
+                <select asp-for="compraVenda.CodigoCliente" asp-items="ViewBag.Cliente" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoCliente" class="text-danger"></span>
+                <br />
             </div>
         </div>
 
         <div class="row">
             <div class="col-2">
-                <label class="campos">Codigo do usuário</label>
+                <label for="usuario" class="campos">Usuário</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="compraVenda.CodigoUsuario" />
+                <select asp-for="compraVenda.CodigoUsuario" asp-items="ViewBag.Usuario" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoUsuario" class="text-danger"></span>
+                <br />
             </div>
         </div>
 
         <div class="row">
             <div class="col-2">
-                <label class="campos">Codigo do Produto</label>
+                <label for="produto" class="campos">Produto</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="compraVenda.CodigoProduto" />
+                <select asp-for="compraVenda.CodigoProduto" asp-items="ViewBag.Produto" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoProduto" class="text-danger"></span>
+                <br />
             </div>
         </div>
-
         <div class="row">
             <div class="col-2">
                 <label class="campos">Quantidade</label>

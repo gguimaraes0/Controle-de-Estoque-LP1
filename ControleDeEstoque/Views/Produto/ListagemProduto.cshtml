@@ -2,28 +2,30 @@
     <link rel="stylesheet" href="~/css/listagem.css" />
 
 <form>
-    <table class="table table-responsive">
-        <tr>
-            <th />
-            <th class="cabecalho">Descrição </th>
-            <th class="cabecalho">Tamanho </th>
-            <th class="cabecalho">Cor </th>
-            <th class="cabecalho">Quantidade</th>
-        </tr>
-
-        @foreach (ProdutoViewModel u in Model.produtos)
-        {
+    <div style="opacity:0.75; background-color: white">
+        <table class="table table-responsive">
             <tr>
-                <td>
-                    <a href="/Produto/Delete?pk=@u.Codigo"  class="btn btn-danger">Apagar</a>
-                    <a href="" class="btn btn-info">Editar</a>
-                </td>
-
-                <td class="lista">@u.Descricao</td>
-                <td class="lista">@u.Tamanho</td>
-                <td class="lista">@u.Cor</td>
-                <td class="lista">@u.Quantidade</td>
+                <th />
+                <th class="cabecalho">Descrição </th>
+                <th class="cabecalho">Tamanho </th>
+                <th class="cabecalho">Cor </th>
+                <th class="cabecalho">Quantidade</th>
             </tr>
-        }
-    </table>
+
+            @foreach (ProdutoViewModel u in Model.produtos)
+            {
+                <tr>
+                    <td>
+                        <a href="/Produto/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
+                        <a href="" class="btn btn-info">Editar</a>
+                    </td>
+
+                    <td class="lista">@u.Descricao</td>
+                    <td class="lista">@u.Tamanho</td>
+                    <td class="lista">@u.Cor</td>
+                    <td class="lista">@u.Quantidade</td>
+                </tr>
+            }
+        </table>
+    </div>
 </form>

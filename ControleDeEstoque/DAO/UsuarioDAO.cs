@@ -79,6 +79,39 @@ namespace ControleDeEstoque.DAO
             CodName = "CodUsuario";
         }
 
+        private UsuarioViewModel MontaUsuarioSelect(DataRow registro)
+        {
+            UsuarioViewModel f = new UsuarioViewModel()
+            {
+                Codigo = registro["CodUsuario"].ToString(),
+
+                Nome = registro["NomeUsuario"].ToString(),
+
+                Email = registro["EmailUsuario"].ToString(),
+
+                Telefone = registro["TelefoneUsuario"].ToString(),
+
+                Numero = registro["NumeroUsuario"].ToString(),
+
+                Complemento = registro["ComplementoUsuario"].ToString(),
+
+                Senha = registro["SenhaUsuario"].ToString(),
+
+                CEP = registro["CEPUsuario"].ToString()
+            };
+            return f;
+        }
+
+        public List<UsuarioViewModel> ListaUsuario()
+        {
+
+            List<UsuarioViewModel> lista = new List<UsuarioViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemUsuario", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaUsuarioSelect(registro));
+            return lista;
+        }
+
         public UsuarioViewModel ValidaLogin(UsuarioViewModel usuario)
         {
             var tabela = HelperDAO.ExecutaProcSelect("spConsultaLogin", CriaParametrosLogin(usuario));

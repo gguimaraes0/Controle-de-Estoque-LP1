@@ -1,26 +1,28 @@
 ﻿@model MainViewModel
     <link rel="stylesheet" href="~/css/listagem.css" />
 
-<form>
-    <table class="table table-responsive">
-        <tr>
-            <th />
-            <th class="cabecalho">Tipo </th>
-            <th class="cabecalho">Quantidade </th>
-            <th class="cabecalho">Data </th>
-        </tr>
+    <form>
+        <div style="opacity:0.75; background-color: white">
+            <table class="table table-responsive">
+                <tr>
+                    <th />
+                    <th class="cabecalho">Tipo </th>
+                    <th class="cabecalho">Quantidade </th>
+                    <th class="cabecalho">Data </th>
+                </tr>
 
-        @foreach (CompraVendaViewModel u in Model.compraVendas)
-        {
-            <tr>
-                <td>
-                    <a href="" class="btn btn-info">Editar</a>
-                </td>
+                @foreach (CompraVendaViewModel u in Model.compraVendas)
+                {
+                    <tr>
+                        <td>
+                            <a href="" class="btn btn-info">Editar</a>
+                        </td>
 
-                <td class="lista">@u.Tipo</td>
-                <td class="lista">@u.Quantidade</td>
-                <td class="lista">@u.Data</td>
-            </tr>
-        }
-    </table>
-</form>
+                        <td class="lista">@u.Tipo</td>
+                        <td class="lista">@u.Quantidade</td>
+                        <td class="lista">@u.Data</td>
+                    </tr>
+                }
+            </table>
+            </div>
+    </form>

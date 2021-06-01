@@ -13,6 +13,7 @@
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Nome" />
+            <span asp-validation-for="usuario.Nome" class="text-danger"></span>
         </div>
     </div>
 
@@ -22,6 +23,7 @@
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Email" />
+            <span asp-validation-for="usuario.Email" class="text-danger"></span>
         </div>
     </div>
 
@@ -31,6 +33,7 @@
         </div>
         <div class="col-3">
             <input type="password" asp-for="usuario.Senha" />
+            <span asp-validation-for="usuario.Senha" class="text-danger"></span>
         </div>
     </div>
 
@@ -40,6 +43,7 @@
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
+            <span asp-validation-for="usuario.Telefone" class="text-danger"></span>
         </div>
     </div>
 
@@ -48,7 +52,8 @@
             <label class="campos">Número</label>
         </div>
         <div class="col-3">
-            <input type="text" asp-for="usuario.Numero" />
+            <input type="number" asp-for="usuario.Numero" />
+            <span asp-validation-for="usuario.Numero" class="text-danger"></span>
         </div>
     </div>
 
@@ -58,6 +63,7 @@
         </div>
         <div class="col-3">
             <input type="text" id="cep" onchange="buscaCEP()" asp-for="usuario.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+            <span asp-validation-for="usuario.CEP" class="text-danger"></span>
         </div>
     </div>
 
@@ -76,6 +82,7 @@
         </div>
         <div class="col-3">
             <input type="text" asp-for="usuario.Complemento" />
+            <span asp-validation-for="usuario.Complemento" class="text-danger"></span>
         </div>
     </div>
 

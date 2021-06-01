@@ -74,22 +74,82 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
-                // ValidaDados(curriculo, Operacao);
+                string Operacao = ViewBag.Operacao = "I";
 
-                ProdutoDAO dao = new ProdutoDAO();
+                ValidaDados(produto);
 
-                PreparaListaFornecedorParaCombo();
-                PreparaListaTipoParaCombo();
-                PreparaListaCorParaCombo();
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                dao.Insert(produto);
-                return View("../Home/Index");
+                if (ModelState.IsValid == false)
+                {
+                    PreparaListaTipoParaCombo();
+                    PreparaListaFornecedorParaCombo();
+                    PreparaListaCorParaCombo();
+                    ViewBag.Operacao = Operacao;
+                    return View("../Produto/CadastroProduto");
+                }
+                else
+                {
+                    ProdutoDAO dao = new ProdutoDAO();
+                    //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                    dao.Insert(produto);
+                    return View("../Home/Index");
+                }
+
+
             }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
+        private void ValidaDados(ProdutoViewModel produto)
+        {
+            ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net
+            ProdutoDAO dao = new ProdutoDAO();
+            if (string.IsNullOrEmpty(produto.CodigoFornecedor) || produto.CodigoFornecedor == "0")
+                ModelState.AddModelError("produto.CodigoFornecedor", "Obrigatório informar um Codigo do Fornecedor.");
+
+            if (string.IsNullOrEmpty(produto.Cor) || produto.CodigoFornecedor == "0")
+                ModelState.AddModelError("produto.Cor", "Obrigatório informar a cor.");
+
+
+            if (string.IsNullOrEmpty(produto.Tipo) || produto.Tipo == "0")
+                ModelState.AddModelError("produto.Tipo", "Obrigatório informar o Tipo.");
+
+
+            if (string.IsNullOrEmpty(produto.Descricao))
+                ModelState.AddModelError("produto.Descricao", "Obrigatório informar a Descricao.");
+
+            if (string.IsNullOrEmpty(produto.Quantidade) || int.Parse(produto.Quantidade) < 0)
+                ModelState.AddModelError("produto.Quantidade", "Informe uma Quantidade válida.");
+
+            if (string.IsNullOrEmpty(produto.Tamanho))
+                ModelState.AddModelError("produto.Tamanho", "Obrigatório informar o tamanho.");
+        }
+        //public IActionResult Edit(int id)
+        //{
+        //    try
+        //    {
+        //        ViewBag.Operacao = "A";
+        //        PreparaListaFornecedorParaCombo();
+        //        PreparaListaCorParaCombo();
+        //        PreparaListaTipoParaCombo();
+
+        //        ProdutoDAO dao = new ProdutoDAO();
+        //        ProdutoViewModel produto = dao.Consulta(id);
+        //        if (produto == null)
+        //            return View("../Home/Index");
+        //        else
+        //            return View("../Produto/CadastroProduto", produto);
+        //    }
+        //    catch (Exception erro)
+        //    {
+        //        return View("Error", new ErrorViewModel(erro.ToString()));
+        //    }
+        //}
+
+
+
 
         private void PreparaListaFornecedorParaCombo()
         {

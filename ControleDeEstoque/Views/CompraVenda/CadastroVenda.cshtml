@@ -60,6 +60,7 @@
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.Quantidade" />
+            <span asp-validation-for="compraVenda.Quantidade" class="text-danger"></span>
         </div>
     </div>
 
@@ -69,6 +70,8 @@
         </div>
         <div class="col-3">
             <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
+            <span asp-validation-for="compraVenda.Data" class="text-danger"></span>
+
         </div>
     </div>
 

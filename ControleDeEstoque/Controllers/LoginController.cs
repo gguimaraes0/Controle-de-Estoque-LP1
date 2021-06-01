@@ -57,14 +57,25 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
+                //if (fornecedor == null)
+                //    fornecedor.IsEmpty = true;
                 // ValidaDados(curriculo, Operacao);
+                string Operacao = ViewBag.Operacao = "I";
+                ValidaDados(usuario);
+                if(ModelState.IsValid == false)
+                {
+                    ViewBag.Operacao = Operacao;
+                    return View("../Usuario/CadastroUsuario");
+                }
+                else
+                {
+                    UsuarioDAO dao = new UsuarioDAO();
 
-                UsuarioDAO dao = new UsuarioDAO();
+                    //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                    dao.Insert(usuario);
+                    return View("../Home/Index");
+                }
 
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                usuario.Codigo = usuario.Codigo;
-                dao.Insert(usuario);
-                return View("../Home/Index");
             }
             catch (Exception erro)
             {
@@ -76,5 +87,32 @@ namespace ControleDeEstoque.Controllers
             MainViewModel mainViewModel = new MainViewModel();
             return View("../Usuario/CadastroUsuario", mainViewModel);
         }
+
+        private void ValidaDados(UsuarioViewModel usuario)
+        {
+            ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net
+            FornecedorDAO dao = new FornecedorDAO();
+            if (string.IsNullOrEmpty(usuario.CEP))
+                ModelState.AddModelError("usuario.CEP", "Obrigatório informar um CEP.");
+
+            if (string.IsNullOrEmpty(usuario.Complemento))
+                ModelState.AddModelError("usuario.Complemento", "Obrigatório informar Complemento.");
+
+            if (string.IsNullOrEmpty(usuario.Email))
+                ModelState.AddModelError("usuario.Email", "Obrigatório informar o Email.");
+
+            if (string.IsNullOrEmpty(usuario.Nome))
+                ModelState.AddModelError("usuario.Nome", "Obrigatório informar o Nome.");
+
+            if (string.IsNullOrEmpty(usuario.Numero) || int.Parse(usuario.Numero) < 0)
+                ModelState.AddModelError("usuario.Numero", "Obrigatório informar o Numero válido.");
+
+            if (string.IsNullOrEmpty(usuario.Telefone))
+                ModelState.AddModelError("usuario.Telefone", "Obrigatório informar um Telefone válido.");
+
+            if (string.IsNullOrEmpty(usuario.Senha))
+                ModelState.AddModelError("usuario.Senha", "Obrigatório informar a Senha.");
+        }
+
     }
 }

@@ -6,75 +6,76 @@
 <link rel="stylesheet" href="~/css/cadastro.css" />
 
 <form asp-controller="CompraVenda" asp-action="CadastrarVenda">
-    <div class="row">
-        <label class="titulocadastro">Registro de Venda</label>
+    <div style="opacity:0.75; background-color: white">
+        <div class="row">
+            <label class="titulocadastro">Registro de Venda</label>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label for="fornecedor" class="campos">Fornecedor</label>
+            </div>
+            <div class="col-3">
+                <select asp-for="compraVenda.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoFornecedor" class="text-danger"></span>
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label for="cliente" class="campos">Cliente</label>
+            </div>
+            <div class="col-3">
+                <select asp-for="compraVenda.CodigoCliente" asp-items="ViewBag.Cliente" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoCliente" class="text-danger"></span>
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label for="usuario" class="campos">Usuário</label>
+            </div>
+            <div class="col-3">
+                <select asp-for="compraVenda.CodigoUsuario" asp-items="ViewBag.Usuario" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoUsuario" class="text-danger"></span>
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label for="produto" class="campos">Produto</label>
+            </div>
+            <div class="col-3">
+                <select asp-for="compraVenda.CodigoProduto" asp-items="ViewBag.Produto" class="form-control"> </select>
+                <span asp-validation-for="compraVenda.CodigoProduto" class="text-danger"></span>
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Quantidade</label>
+            </div>
+            <div class="col-3">
+                <input type="number" asp-for="compraVenda.Quantidade" />
+                <span asp-validation-for="compraVenda.Quantidade" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Data da Venda</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
+                <span asp-validation-for="compraVenda.Data" class="text-danger"></span>
+
+            </div>
+        </div>
+
+        <input class="botao" type="submit" value="Cadastrar" />
     </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label for="fornecedor" class="campos">Fornecedor</label>
-        </div>
-        <div class="col-3">
-            <select asp-for="compraVenda.CodigoFornecedor" asp-items="ViewBag.Fornecedor" class="form-control"> </select>
-            <span asp-validation-for="compraVenda.CodigoFornecedor" class="text-danger"></span>
-            <br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label for="cliente" class="campos">Cliente</label>
-        </div>
-        <div class="col-3">
-            <select asp-for="compraVenda.CodigoCliente" asp-items="ViewBag.Cliente" class="form-control"> </select>
-            <span asp-validation-for="compraVenda.CodigoCliente" class="text-danger"></span>
-            <br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label for="usuario" class="campos">Usuário</label>
-        </div>
-        <div class="col-3">
-            <select asp-for="compraVenda.CodigoUsuario" asp-items="ViewBag.Usuario" class="form-control"> </select>
-            <span asp-validation-for="compraVenda.CodigoUsuario" class="text-danger"></span>
-            <br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label for="produto" class="campos">Produto</label>
-        </div>
-        <div class="col-3">
-            <select asp-for="compraVenda.CodigoProduto" asp-items="ViewBag.Produto" class="form-control"> </select>
-            <span asp-validation-for="compraVenda.CodigoProduto" class="text-danger"></span>
-            <br />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Quantidade</label>
-        </div>
-        <div class="col-3">
-            <input type="number" asp-for="compraVenda.Quantidade" />
-            <span asp-validation-for="compraVenda.Quantidade" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Data da Venda</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
-            <span asp-validation-for="compraVenda.Data" class="text-danger"></span>
-
-        </div>
-    </div>
-
-    <input class="botao" type="submit" value="Cadastrar" />
-
 </form>

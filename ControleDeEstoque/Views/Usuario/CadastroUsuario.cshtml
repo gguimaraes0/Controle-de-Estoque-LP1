@@ -1,118 +1,120 @@
 ﻿@model MainViewModel
 
 <link rel="stylesheet" href="~/css/cadastro.css" />
+<link rel="stylesheet" href="~/css/listagem.css" />
 <form asp-controller="Login" asp-action="CadastrarUsuario">
+    <div style="opacity:0.75; background-color: white">
 
-    <div class="row">
-        <label class="titulocadastro">Cadastro de Usuário</label>
+        <div class="row">
+            <label class="titulocadastro">Cadastro de Usuário</label>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Nome</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="usuario.Nome" />
+                <span asp-validation-for="usuario.Nome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Email</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="usuario.Email" />
+                <span asp-validation-for="usuario.Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Senha</label>
+            </div>
+            <div class="col-3">
+                <input type="password" asp-for="usuario.Senha" />
+                <span asp-validation-for="usuario.Senha" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Telefone</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="usuario.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
+                <span asp-validation-for="usuario.Telefone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Número</label>
+            </div>
+            <div class="col-3">
+                <input type="number" asp-for="usuario.Numero" />
+                <span asp-validation-for="usuario.Numero" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">CEP</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="cep" onchange="buscaCEP()" asp-for="usuario.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+                <span asp-validation-for="usuario.CEP" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Logradouro</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="logradouro" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Complemento</label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="usuario.Complemento" />
+                <span asp-validation-for="usuario.Complemento" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Bairro</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="bairro" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Cidade</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="cidade" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label class="campos">Estado</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="estado" />
+            </div>
+        </div>
+
+        <input class="botao" type="submit" value="Cadastrar" />
     </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Nome</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="usuario.Nome" />
-            <span asp-validation-for="usuario.Nome" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Email</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="usuario.Email" />
-            <span asp-validation-for="usuario.Email" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Senha</label>
-        </div>
-        <div class="col-3">
-            <input type="password" asp-for="usuario.Senha" />
-            <span asp-validation-for="usuario.Senha" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Telefone</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="usuario.Telefone" placeholder="(99) 99999-9999" onkeypress="mask(this, mphone);" />
-            <span asp-validation-for="usuario.Telefone" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Número</label>
-        </div>
-        <div class="col-3">
-            <input type="number" asp-for="usuario.Numero" />
-            <span asp-validation-for="usuario.Numero" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">CEP</label>
-        </div>
-        <div class="col-3">
-            <input type="text" id="cep" onchange="buscaCEP()" asp-for="usuario.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
-            <span asp-validation-for="usuario.CEP" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Logradouro</label>
-        </div>
-        <div class="col-3">
-            <input type="text" id="logradouro" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Complemento</label>
-        </div>
-        <div class="col-3">
-            <input type="text" asp-for="usuario.Complemento" />
-            <span asp-validation-for="usuario.Complemento" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Bairro</label>
-        </div>
-        <div class="col-3">
-            <input type="text" id="bairro" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Cidade</label>
-        </div>
-        <div class="col-3">
-            <input type="text" id="cidade" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <label class="campos">Estado</label>
-        </div>
-        <div class="col-3">
-            <input type="text" id="estado" />
-        </div>
-    </div>
-
-    <input class="botao" type="submit" value="Cadastrar" />
-
 </form>

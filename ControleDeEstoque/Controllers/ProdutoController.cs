@@ -106,11 +106,16 @@ namespace ControleDeEstoque.Controllers
         {
             ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net
             ProdutoDAO dao = new ProdutoDAO();
-            if (string.IsNullOrEmpty(produto.CodigoFornecedor))
+            if (string.IsNullOrEmpty(produto.CodigoFornecedor) || produto.CodigoFornecedor == "0")
                 ModelState.AddModelError("produto.CodigoFornecedor", "Obrigatório informar um Codigo do Fornecedor.");
 
-            if (string.IsNullOrEmpty(produto.Cor))
+            if (string.IsNullOrEmpty(produto.Cor) || produto.CodigoFornecedor == "0")
                 ModelState.AddModelError("produto.Cor", "Obrigatório informar a cor.");
+
+
+            if (string.IsNullOrEmpty(produto.Tipo) || produto.Tipo == "0")
+                ModelState.AddModelError("produto.Tipo", "Obrigatório informar o Tipo.");
+
 
             if (string.IsNullOrEmpty(produto.Descricao))
                 ModelState.AddModelError("produto.Descricao", "Obrigatório informar a Descricao.");

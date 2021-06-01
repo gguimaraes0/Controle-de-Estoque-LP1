@@ -54,18 +54,22 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
-                // ValidaDados(curriculo, Operacao);
+                string Operacao = ViewBag.Operacao = "I";
+                ValidaDados(compra.compraVenda);
+                if (ModelState.IsValid == false)
+                {
+                    PreparaListaFornecedorParaCombo();
+                    return View("../CompraVenda/CadastroCompra");
+                }
+                else
+                {
+                    CompraVendaDAO dao = new CompraVendaDAO();
 
-                CompraVendaDAO dao = new CompraVendaDAO();
-
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                compra.compraVenda.Tipo = "Compra";
-
-                PreparaListaFornecedorParaCombo();
-
-                dao.Insert(compra.compraVenda);
-
-                return View("../Home/Index");
+                    //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                    compra.compraVenda.Tipo = "Compra";
+                    dao.Insert(compra.compraVenda);
+                    return View("../Home/Index");
+                }
             }
             catch (Exception erro)
             {
@@ -76,21 +80,51 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
-                CompraVendaDAO dao = new CompraVendaDAO();
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                venda.compraVenda.Tipo = "Venda";
 
-                PreparaListaFornecedorParaCombo();
-
-                dao.Insert(venda.compraVenda);
-                return View("../Home/Index");
+                string Operacao = ViewBag.Operacao = "I";
+                ValidaDados(venda.compraVenda);
+                if (ModelState.IsValid == false)
+                {
+                    PreparaListaFornecedorParaCombo();
+                    return View("../CompraVenda/CadastroVenda");
+                }
+                else
+                {
+                    CompraVendaDAO dao = new CompraVendaDAO();
+                    //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+                    venda.compraVenda.Tipo = "Venda";
+                    PreparaListaFornecedorParaCombo();
+                    dao.Insert(venda.compraVenda);
+                    return View("../Home/Index");
+                }
             }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+        private void ValidaDados(CompraVendaViewModel compraVenda)
+        {
+            ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net
+            FornecedorDAO dao = new FornecedorDAO();
+            if (string.IsNullOrEmpty(compraVenda.CodigoCliente))
+                ModelState.AddModelError("compraVenda.CodigoCliente", "Obrigatório informar o Código do Cliente.");
 
+            if (string.IsNullOrEmpty(compraVenda.CodigoFornecedor) || compraVenda.CodigoFornecedor == "0")
+                ModelState.AddModelError("compraVenda.CodigoFornecedor", "Obrigatório informar  o Código do Fornecedor.");
+
+            if (string.IsNullOrEmpty(compraVenda.CodigoProduto))
+                ModelState.AddModelError("compraVenda.CodigoProduto", "Obrigatório informar o o Código do Produto.");
+
+            if (string.IsNullOrEmpty(compraVenda.CodigoUsuario))
+                ModelState.AddModelError("compraVenda.CodigoUsuario", "Obrigatório informar o Código do Usuário.");
+
+            if (string.IsNullOrEmpty(compraVenda.Data))
+                ModelState.AddModelError("compraVenda.Data", "Obrigatório informar a Data.");
+
+            if (string.IsNullOrEmpty(compraVenda.Quantidade) || int.Parse(compraVenda.Quantidade) < 0)
+                ModelState.AddModelError("compraVenda.Quantidade", "Obrigatório informar uma Quantidade válido.");
+        }
         private void PreparaListaFornecedorParaCombo()
         {
             FornecedorDAO FornecedorDao = new FornecedorDAO();

@@ -26,6 +26,7 @@
             </div>
             <div class="col-3">
                 <input type="text" asp-for="compraVenda.CodigoCliente" />
+                <span asp-validation-for="compraVenda.CodigoCliente" class="text-danger"></span>
             </div>
         </div>
 
@@ -35,6 +36,7 @@
             </div>
             <div class="col-3">
                 <input type="text" asp-for="compraVenda.CodigoUsuario" />
+                <span asp-validation-for="compraVenda.CodigoUsuario" class="text-danger"></span>
             </div>
         </div>
 
@@ -44,6 +46,8 @@
             </div>
             <div class="col-3">
                 <input type="text" asp-for="compraVenda.CodigoProduto" />
+                <span asp-validation-for="compraVenda.CodigoProduto" class="text-danger"></span>
+
             </div>
         </div>
 
@@ -52,7 +56,8 @@
                 <label class="campos">Quantidade</label>
             </div>
             <div class="col-3">
-                <input type="text" asp-for="compraVenda.Quantidade" />
+                <input type="number" asp-for="compraVenda.Quantidade" />
+                <span asp-validation-for="compraVenda.Quantidade" class="text-danger"></span>
             </div>
         </div>
 
@@ -62,6 +67,8 @@
             </div>
             <div class="col-3">
                 <input type="text" asp-for="compraVenda.Data" placeholder="dd/mm/aaaa" onkeydown="fMasc(this, mData);" />
+                <span asp-validation-for="compraVenda.Data" class="text-danger"></span>
+
             </div>
         </div>
         <input class="botao" type="submit" value="Cadastrar" />

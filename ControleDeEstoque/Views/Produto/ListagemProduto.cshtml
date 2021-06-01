@@ -1,5 +1,5 @@
 ﻿@model MainViewModel
-    <link rel="stylesheet" href="~/css/listagem.css" />
+<link rel="stylesheet" href="~/css/listagem.css" />
 
 <form>
     <table class="table table-responsive">
@@ -15,8 +15,8 @@
         {
             <tr>
                 <td>
-                    <a href="/Produto/Delete?pk=@u.Codigo"  class="btn btn-danger">Apagar</a>
-                    <a href="" class="btn btn-info">Editar</a>
+                    <a href="/Produto/Delete?pk=@u.Codigo" class="btn btn-danger">Apagar</a>
+                    <a href="/Produto/Edit?pk=@u.Codigo" class="btn btn-info">Editar</a>
                 </td>
 
                 <td class="lista">@u.Descricao</td>

@@ -15,5 +15,6 @@ namespace ControleDeEstoque.Models
         public string CEP { get; set; }
         public string Numero { get; set; }
         public string Complemento { get; set; }
+        public bool IsEmpty { get; set; }
     }
 }

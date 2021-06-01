@@ -61,7 +61,7 @@
             <label class="campos">CEP</label>
         </div>
         <div class="col-3">
-            <input class="textbox" type="text" id="cep" onchange="buscaCEP()" asp-for="fornecedor.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
+            <input class="textbox" type="tel" id="cep" onchange="buscaCEP()" asp-for="fornecedor.CEP" placeholder="99999-999" onkeydown="javascript: fMasc(this, formatarCEP);" />
             <span asp-validation-for="fornecedor.CEP" class="text-danger"></span>
         </div>
     </div>

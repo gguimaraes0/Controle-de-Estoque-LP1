@@ -72,8 +72,8 @@ namespace ControleDeEstoque.Controllers
                 PreparaListaUsuarioParaCombo();
                 PreparaListaProdutoParaCombo();
 
-                dao.Insert(compra.compraVenda);
-
+                // dao.Insert(compra.compraVenda);
+                dao.InserirCompra(compra.compraVenda);
                 return View("../Home/Index");
             }
             catch (Exception erro)
@@ -94,7 +94,8 @@ namespace ControleDeEstoque.Controllers
                 PreparaListaUsuarioParaCombo();
                 PreparaListaProdutoParaCombo();
 
-                dao.Insert(venda.compraVenda);
+                //dao.Insert(venda.compraVenda);
+                dao.InserirVenda(venda.compraVenda);
                 return View("../Home/Index");
             }
             catch (Exception erro)

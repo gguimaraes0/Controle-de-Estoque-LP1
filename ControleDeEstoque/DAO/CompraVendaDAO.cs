@@ -38,6 +38,11 @@ namespace ControleDeEstoque.DAO
             CompraVendaViewModel U = new CompraVendaViewModel();
 
             U.Tipo = registro["Tipo"].ToString();
+            if (registro["ID"] != null)
+            {
+                U.Codigo = registro["ID"].ToString();
+            }
+            
             U.CodigoCliente =registro["CodCliente"].ToString();
             U.CodigoUsuario = registro["CodUsuario"].ToString();
             U.CodigoFornecedor = registro["CodFornecedor"].ToString();
@@ -53,5 +58,24 @@ namespace ControleDeEstoque.DAO
             NomeSpListagem = "spListagemCompras_Vendas";
         }
 
+        #region a
+        public void InserirVenda(CompraVendaViewModel compra)
+        {
+            string sql =
+            " insert into[Compras_Vendas] " +
+ "([Data], CodProduto,Quantidade,CodCliente,CodFornecedor,CodUsuario, Tipo) " +
+ "values (@Data, @CodProduto, @Quantidade, @CodCliente, @CodFornecedor, @CodUsuario, @Tipo)";
+            HelperDAO.ExecutaSQL(sql, CriaParametros(compra));
+        }
+
+        public void InserirCompra(CompraVendaViewModel compra)
+        {
+            string sql =
+            " insert into[Compras_Vendas] " +
+ "([Data], CodProduto,Quantidade,CodCliente,CodFornecedor,CodUsuario, Tipo) " +
+ "values (@Data, @CodProduto, @Quantidade, @CodCliente, @CodFornecedor, @CodUsuario, @Tipo)";
+            HelperDAO.ExecutaSQL(sql, CriaParametros(compra));
+        }
+        #endregion
     }
 }

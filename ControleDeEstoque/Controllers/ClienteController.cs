@@ -98,7 +98,10 @@ namespace ControleDeEstoque.Controllers
                 ModelState.AddModelError("cliente.DataNascimento", "Obrigatório informar a Data Nascimento.");
 
             if (string.IsNullOrEmpty(cliente.CNPJ) && string.IsNullOrEmpty(cliente.CPF))
+            {
                 ModelState.AddModelError("cliente.CNPJ", "Obrigatório informar CPF/CNPJ.");
+                ModelState.AddModelError("cliente.CPF", "Obrigatório informar CPF/CNPJ.");
+            }
 
         }
 

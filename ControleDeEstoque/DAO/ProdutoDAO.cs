@@ -38,8 +38,8 @@ namespace ControleDeEstoque.DAO
         protected override SqlParameter[] CriaParametros(ProdutoViewModel produto)
         {
             SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("CorProduto", produto.Cor);
-            parametros[1] = new SqlParameter("TipoProduto", produto.Tipo);
+            parametros[1] = new SqlParameter("CorProduto", produto.Cor);
+            parametros[0] = new SqlParameter("TipoProduto", produto.Tipo);
             parametros[2] = new SqlParameter("TamanhoProduto", produto.Tamanho);
             parametros[3] = new SqlParameter("DescricaoProduto", produto.Descricao);
             parametros[4] = new SqlParameter("QuantidadeDisponivelProduto", produto.Quantidade);

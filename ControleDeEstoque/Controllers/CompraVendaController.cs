@@ -66,6 +66,10 @@ namespace ControleDeEstoque.Controllers
                 if (ModelState.IsValid == false)
                 {
                     PreparaListaFornecedorParaCombo();
+                    PreparaListaClienteParaCombo();
+                    PreparaListaUsuarioParaCombo();
+                    PreparaListaProdutoParaCombo();
+
                     return View("../CompraVenda/CadastroCompra", compra);
                 }
                 else
@@ -100,7 +104,12 @@ namespace ControleDeEstoque.Controllers
                 ValidaDados(venda.compraVenda);
                 if (ModelState.IsValid == false)
                 {
+           
                     PreparaListaFornecedorParaCombo();
+                    PreparaListaClienteParaCombo();
+                    PreparaListaUsuarioParaCombo();
+                    PreparaListaProdutoParaCombo();
+
                     return View("../CompraVenda/CadastroVenda", venda);
                 }
                 else
@@ -108,7 +117,7 @@ namespace ControleDeEstoque.Controllers
                     CompraVendaDAO dao = new CompraVendaDAO();
                     //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                     venda.compraVenda.Tipo = "Venda";
-                    dao.Insert(venda.compraVenda);
+                    dao.InserirVenda(venda.compraVenda);
                     return View("../Home/Index");
                 }
             }

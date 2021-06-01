@@ -112,7 +112,7 @@ namespace ControleDeEstoque.Controllers
             if (string.IsNullOrEmpty(produto.CodigoFornecedor) || produto.CodigoFornecedor == "0")
                 ModelState.AddModelError("produto.CodigoFornecedor", "Obrigatório informar um Codigo do Fornecedor.");
 
-            if (string.IsNullOrEmpty(produto.Cor) || produto.CodigoFornecedor == "0")
+            if (string.IsNullOrEmpty(produto.Cor) || produto.Cor == "0")
                 ModelState.AddModelError("produto.Cor", "Obrigatório informar a cor.");
 
 

@@ -58,7 +58,7 @@ namespace ControleDeEstoque.DAO
             NomeSpListagem = "spListagemCompras_Vendas";
         }
 
-        #region a
+        #region _
         public void InserirVenda(CompraVendaViewModel compra)
         {
             string sql =

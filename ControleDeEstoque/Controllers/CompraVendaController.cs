@@ -72,22 +72,19 @@ namespace ControleDeEstoque.Controllers
                     CompraVendaDAO dao = new CompraVendaDAO();
 
                     //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
+
+                    //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                     compra.compraVenda.Tipo = "Compra";
-                    dao.Insert(compra.compraVenda);
+
+                    PreparaListaFornecedorParaCombo();
+                    PreparaListaClienteParaCombo();
+                    PreparaListaUsuarioParaCombo();
+                    PreparaListaProdutoParaCombo();
+
+                    // dao.Insert(compra.compraVenda);
+                    dao.InserirCompra(compra.compraVenda);
                     return View("../Home/Index");
                 }
-            }
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                compra.compraVenda.Tipo = "Compra";
-
-                PreparaListaFornecedorParaCombo();
-                PreparaListaClienteParaCombo();
-                PreparaListaUsuarioParaCombo();
-                PreparaListaProdutoParaCombo();
-
-                // dao.Insert(compra.compraVenda);
-                dao.InserirCompra(compra.compraVenda);
-                return View("../Home/Index");
             }
             catch (Exception erro)
             {
@@ -98,7 +95,6 @@ namespace ControleDeEstoque.Controllers
         {
             try
             {
-
                 string Operacao = ViewBag.Operacao = "I";
                 ValidaDados(venda.compraVenda);
                 if (ModelState.IsValid == false)
@@ -111,24 +107,11 @@ namespace ControleDeEstoque.Controllers
                     CompraVendaDAO dao = new CompraVendaDAO();
                     //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
                     venda.compraVenda.Tipo = "Venda";
-                    PreparaListaFornecedorParaCombo();
                     dao.Insert(venda.compraVenda);
                     return View("../Home/Index");
                 }
             }
-                CompraVendaDAO dao = new CompraVendaDAO();
-                //Preencher todos os CPFs para mantê-los iguais na hora de salvar no banco 
-                venda.compraVenda.Tipo = "Venda";
 
-                PreparaListaFornecedorParaCombo();
-                PreparaListaClienteParaCombo();
-                PreparaListaUsuarioParaCombo();
-                PreparaListaProdutoParaCombo();
-
-                //dao.Insert(venda.compraVenda);
-                dao.InserirVenda(venda.compraVenda);
-                return View("../Home/Index");
-            }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
@@ -138,16 +121,16 @@ namespace ControleDeEstoque.Controllers
         {
             ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net
             FornecedorDAO dao = new FornecedorDAO();
-            if (string.IsNullOrEmpty(compraVenda.CodigoCliente))
+            if (string.IsNullOrEmpty(compraVenda.CodigoCliente) || compraVenda.CodigoCliente == "0")
                 ModelState.AddModelError("compraVenda.CodigoCliente", "Obrigatório informar o Código do Cliente.");
 
             if (string.IsNullOrEmpty(compraVenda.CodigoFornecedor) || compraVenda.CodigoFornecedor == "0")
                 ModelState.AddModelError("compraVenda.CodigoFornecedor", "Obrigatório informar  o Código do Fornecedor.");
 
-            if (string.IsNullOrEmpty(compraVenda.CodigoProduto))
+            if (string.IsNullOrEmpty(compraVenda.CodigoProduto) || compraVenda.CodigoProduto == "0")
                 ModelState.AddModelError("compraVenda.CodigoProduto", "Obrigatório informar o o Código do Produto.");
 
-            if (string.IsNullOrEmpty(compraVenda.CodigoUsuario))
+            if (string.IsNullOrEmpty(compraVenda.CodigoUsuario) || compraVenda.CodigoUsuario == "0")
                 ModelState.AddModelError("compraVenda.CodigoUsuario", "Obrigatório informar o Código do Usuário.");
 
             if (string.IsNullOrEmpty(compraVenda.Data))
@@ -194,7 +177,7 @@ namespace ControleDeEstoque.Controllers
             listaUsuario.Add(new SelectListItem("Selecione o Usuario...", "0"));
             foreach (var Usuario in Usuarios)
             {
-                SelectListItem item = new SelectListItem (Usuario.Nome, Usuario.Codigo.ToString());
+                SelectListItem item = new SelectListItem(Usuario.Nome, Usuario.Codigo.ToString());
                 listaUsuario.Add(item);
             }
             ViewBag.Usuario = listaUsuario;
